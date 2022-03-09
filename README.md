@@ -1,2 +1,2 @@
 # SNS
-Team 6 - SNS 개발 프로젝트
+Team 4 - SNS 개발 프로젝트
