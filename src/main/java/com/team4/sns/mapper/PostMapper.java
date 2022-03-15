@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Param;
 public interface PostMapper {
 
     void writePost(@Param("post") Post post);
+    void deletePost(@Param("postId") Long postId);
 }

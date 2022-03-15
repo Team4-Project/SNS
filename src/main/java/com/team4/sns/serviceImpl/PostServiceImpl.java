@@ -16,4 +16,9 @@ public class PostServiceImpl implements PostService {
     public void writePost(Post post) {
         postMapper.writePost(post);
     }
+
+    @Override
+    public void deletePost(Long postId) {
+        postMapper.deletePost(postId);
+    }
 }

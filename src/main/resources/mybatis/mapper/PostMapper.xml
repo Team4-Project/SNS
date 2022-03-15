@@ -9,5 +9,11 @@
         VALUES (#{post.userId}, #{post.content})
     </insert>
 
+    <update id="deletePost" parameterType="java.lang.Long">
+        UPDATE post
+        SET is_deleted=1
+        WHERE id=#{postId}
+    </update>
+
 </mapper>
 
