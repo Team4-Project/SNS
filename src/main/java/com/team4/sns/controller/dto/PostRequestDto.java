@@ -16,7 +16,7 @@ public class PostRequestDto {
     private Long userId;
 
     @NotBlank(message = "내용을 입력해주세요")
-    @Size(min=10, max=500, message = "글은 10~500자 사이로 입력해주세요.")
+    @Size(min=1, max=500, message = "글은 1~500자 사이로 입력해주세요.")
     private String content;
 
     public Post toPost(){
