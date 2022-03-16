@@ -9,4 +9,5 @@ public interface PostMapper {
 
     void writePost(@Param("post") Post post);
     void deletePost(@Param("postId") Long postId);
+    void modifyPost(@Param("postId") Long postId, @Param("post") Post post);
 }

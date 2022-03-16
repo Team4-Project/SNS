@@ -6,13 +6,19 @@
 
     <insert id="writePost" parameterType="com.team4.sns.vo.Post">
         INSERT INTO post(user_id, content)
-        VALUES (#{post.userId}, #{post.content})
+        VALUES (#{post.userId}, #{post.content});
     </insert>
 
     <update id="deletePost" parameterType="java.lang.Long">
         UPDATE post
         SET is_deleted=1
-        WHERE id=#{postId}
+        WHERE id=#{postId};
+    </update>
+
+    <update id="modifyPost">
+        UPDATE post
+        SET content=#{post.content}
+        WHERE id=#{postId} and is_deleted=0;
     </update>
 
 </mapper>

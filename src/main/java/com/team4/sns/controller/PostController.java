@@ -24,4 +24,9 @@ public class PostController {
         postService.deletePost(postId);
     }
 
+    @PatchMapping(value ="/post/{post-id}")
+    public void modifyPost(@PathVariable(name ="post-id") Long postId,
+                           @RequestBody @Validated PostRequestDto postRequestDto){
+        postService.modifyPost(postId, postRequestDto.toPost());
+    }
 }
