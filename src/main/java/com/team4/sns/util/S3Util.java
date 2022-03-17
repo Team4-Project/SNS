@@ -21,29 +21,36 @@ import java.util.List;
 @RequiredArgsConstructor
 public class S3Util {
 
-    private static final String BUCKET_NAME = "codepresso-team4";
+    private final static String BUCKET_NAME = "codepresso-team4";
     private final S3Config s3Config;
 
-    public String uploadObject(MultipartFile data) throws IOException {
+    public List<String> uploadObject(List<MultipartFile> images) throws IOException {
+
+        List<String> uploadedImageUrl = new ArrayList<>();
+
         S3Client s3Client = s3Config.getS3Client();
 
-        byte[] byteArr = data.getBytes();
+        for(MultipartFile image : images){
+            byte[] byteArr = image.getBytes();
 
-        PutObjectRequest request = PutObjectRequest.builder()
-                .bucket(BUCKET_NAME)
-                .key(data.getOriginalFilename())
-                .contentType(MediaType.ALL_VALUE)
-                .contentLength((long) byteArr.length)
-                .build();
-        log.info("data : {}", data.getOriginalFilename());
-        PutObjectResponse putObjectResult = s3Client.putObject(
-                request,
-                RequestBody.fromByteBuffer(ByteBuffer.wrap(byteArr)));
+            long time = System.currentTimeMillis();
+            String translatedImageName = String.format("%d_%s", time, image.getOriginalFilename().replaceAll(" ", ""));
 
-        URL reportUrl = s3Client.utilities().getUrl(GetUrlRequest.builder().bucket(BUCKET_NAME).key(data.getOriginalFilename()).build());
-        log.info("putObjectResult : {}", putObjectResult);
-        log.info("reportUrl : {}", reportUrl);
-        return reportUrl.toString();
+            PutObjectRequest request = PutObjectRequest.builder()
+                    .bucket(BUCKET_NAME)
+                    .key(translatedImageName)
+                    .contentType(MediaType.ALL_VALUE)
+                    .contentLength((long) byteArr.length)
+                    .build();
+
+            PutObjectResponse putObjectResult = s3Client.putObject(
+                    request,
+                    RequestBody.fromByteBuffer(ByteBuffer.wrap(byteArr)));
+
+            URL reportUrl = s3Client.utilities().getUrl(GetUrlRequest.builder().bucket(BUCKET_NAME).key(translatedImageName).build());
+            uploadedImageUrl.add(reportUrl.toString());
+        }
+        return uploadedImageUrl;
     }
 
     public List<String> getObjectList() {

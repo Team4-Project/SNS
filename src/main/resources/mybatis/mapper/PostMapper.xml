@@ -6,7 +6,10 @@
 
     <insert id="writePost" parameterType="com.team4.sns.vo.Post">
         INSERT INTO post(user_id, content)
-        VALUES (#{post.userId}, #{post.content});
+        VALUES (#{post.userId}, #{post.content})
+        <selectKey keyProperty="post.id" resultType="Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <update id="deletePost" parameterType="java.lang.Long">
