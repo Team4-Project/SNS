@@ -1,0 +1,55 @@
+package com.team4.sns.service;
+
+import com.team4.sns.mapper.TagMapper;
+import com.team4.sns.vo.Tag;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TagService {
+    private TagMapper tagMapper;
+    private TagPostService tagPostService;
+    public TagService(TagMapper tagMapper, TagPostService tagPostService) {
+        this.tagMapper = tagMapper;
+        this.tagPostService = tagPostService;
+    }
+
+    // PostPageController 에서 post를 구성하는 post, tag, comment 를 각각 불러올 때
+    // postId를 기반으로 tagList를 불러와야할 때 필요
+    public List<Tag> getTagListByPostId(Integer postId) {
+        return tagMapper.getTagListByPostId(postId);
+    }
+
+    // postId에 해당하는 tag를 생성하고,
+    // postId와 만들어진 tagId 기반으로 post_tag 생성
+    public void createTag(Integer postId, String content) {
+        Tag tag = new Tag(postId, content);
+        tagMapper.createTag(tag);
+        Integer tagId = tag.getId();
+        tagPostService.createTagPost(postId, tagId);
+//        String[] tags = tagList.split(",");
+//        for (int i=0; i<tags.length; i++) {
+//            Tag tag = new Tag(postId, tags[i]);
+//            tagMapper.createTag(tag);
+//            Integer tagId = tag.getId();
+//            tagPostService.createTagPost(postId, tagId);
+//        }
+    }
+    public void editTag(Tag tag) {
+        tagMapper.editTag(tag);
+    }
+
+    public void deleteTag(Tag tag) {
+        tagMapper.deleteTag(tag);
+        tagPostService.deleteTagPost(tag.getPostId(), tag.getId());
+    }
+    public Tag getTag(Integer tagId) {
+        return tagMapper.getTag(tagId);
+    }
+
+    public List<Tag> getTagListSearch(String content, Integer page, Integer size) {
+        return tagMapper.getTagListSearch(content, size, (page-1) * size);
+    }
+
+}
