@@ -2,10 +2,24 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="callSettersOnNulls" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
     <mappers>
+<<<<<<< HEAD
         <mapper resource="mybatis/mapper/TestMapper.xml"/>
         <mapper resource="mybatis/mapper/PostMapper.xml"/>
         <mapper resource="mybatis/mapper/ImageMapper.xml"/>
+=======
+        <mapper resource="mybatis/mapper/UserMapper.xml"/>
+        <mapper resource="mybatis/mapper/UserSessionMapper.xml"/>
+        <mapper resource="mybatis/mapper/TagMapper.xml"/>
+        <mapper resource="mybatis/mapper/TagPostMapper.xml"/>
+>>>>>>> feature/login
     </mappers>
+
 </configuration>
 
