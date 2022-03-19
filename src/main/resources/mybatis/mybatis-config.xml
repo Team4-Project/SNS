@@ -9,16 +9,13 @@
     </settings>
 
     <mappers>
-<<<<<<< HEAD
         <mapper resource="mybatis/mapper/TestMapper.xml"/>
         <mapper resource="mybatis/mapper/PostMapper.xml"/>
         <mapper resource="mybatis/mapper/ImageMapper.xml"/>
-=======
         <mapper resource="mybatis/mapper/UserMapper.xml"/>
         <mapper resource="mybatis/mapper/UserSessionMapper.xml"/>
         <mapper resource="mybatis/mapper/TagMapper.xml"/>
         <mapper resource="mybatis/mapper/TagPostMapper.xml"/>
->>>>>>> feature/login
     </mappers>
 
 </configuration>
