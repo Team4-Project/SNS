@@ -16,4 +16,9 @@ public class CommentServiceImpl implements CommentService {
     public void writeComment(Comment comment) {
         commentMapper.writeCommentByPostId(comment);
     }
+
+    @Override
+    public void deleteComment(Long commentId) {
+        commentMapper.deleteCommentByCommentId(commentId);
+    }
 }

@@ -12,11 +12,11 @@
         </selectKey>
     </insert>
 
-<!--    <update id="deletePost" parameterType="java.lang.Long">-->
-<!--        UPDATE post-->
-<!--        SET is_deleted=1-->
-<!--        WHERE id=#{postId};-->
-<!--    </update>-->
+    <update id="deleteCommentByCommentId" parameterType="java.lang.Long">
+        UPDATE comment
+        SET is_deleted=1
+        WHERE id=#{commentId};
+    </update>
 
 <!--    <update id="modifyPost">-->
 <!--        UPDATE post-->

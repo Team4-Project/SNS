@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Param;
 public interface CommentMapper {
 
     void writeCommentByPostId(@Param("comment") Comment comment);
+    void deleteCommentByCommentId(@Param("commentId") Long commentId);
 }
