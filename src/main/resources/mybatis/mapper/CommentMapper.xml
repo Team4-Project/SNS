@@ -24,5 +24,11 @@
         WHERE id=#{commentId} and is_deleted=0;
     </update>
 
+    <select id="getCommentContentByCommentId" resultType="java.lang.String">
+        SELECT content
+        FROM comment
+        WHERE id=#{commentId} AND is_deleted=0;
+    </select>
+
 </mapper>
 

@@ -10,4 +10,5 @@ public interface CommentMapper {
     void writeCommentByPostId(@Param("comment") Comment comment);
     void deleteCommentByCommentId(@Param("commentId") Long commentId);
     void modifyCommentByCommentId(@Param("commentId") Long commentId, @Param("comment") Comment comment);
+    String getCommentContentByCommentId(@Param("commentId") Long commentId);
 }

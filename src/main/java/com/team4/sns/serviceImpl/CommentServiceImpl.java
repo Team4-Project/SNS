@@ -26,4 +26,9 @@ public class CommentServiceImpl implements CommentService {
     public void modifyComment(Long commentId, Comment comment) {
         commentMapper.modifyCommentByCommentId(commentId, comment);
     }
+
+    @Override
+    public String getCommentContent(Long commentId) {
+        return commentMapper.getCommentContentByCommentId(commentId);
+    }
 }

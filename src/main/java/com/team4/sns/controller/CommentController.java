@@ -3,6 +3,8 @@ package com.team4.sns.controller;
 import com.team4.sns.controller.dto.CommentRequestDto;
 import com.team4.sns.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +26,15 @@ public class CommentController {
         commentService.deleteComment(commentId);
     }
 
-    @PatchMapping(value ="/commet/{comment-id}")
+    @PatchMapping(value ="/comment/{comment-id}")
     public void modifyComment(@PathVariable(value = "comment-id") Long commentId,
                               @RequestBody @Validated CommentRequestDto commentRequestDto){
         commentService.modifyComment(commentId, commentRequestDto.toComment());
+    }
+
+    @GetMapping(value ="/comment/{comment-id}")
+    public ResponseEntity<String> getCommentContentWhenModifyComment(@PathVariable(value = "comment-id") Long commentId){
+        return new ResponseEntity<String>(commentService.getCommentContent(commentId), HttpStatus.OK);
     }
 
 }
