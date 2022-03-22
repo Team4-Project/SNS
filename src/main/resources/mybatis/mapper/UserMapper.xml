@@ -9,7 +9,7 @@
         FROM user
         WHERE account = #{account} AND is_deleted = 0
     </select>
-    <insert id="createUpUser">
+    <insert id="createUser">
         INSERT INTO user (account, password, name)
         VALUES (#{user.account}, #{user.password}, #{user.name})
     </insert>
