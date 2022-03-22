@@ -14,6 +14,12 @@
             )
         </foreach>
     </insert>
+
+    <update id="deleteImageByPostId">
+        UPDATE post_image
+        SET is_deleted=1
+        WHERE post_id=#{postId} AND is_deleted=0;
+    </update>
     
 </mapper>
 

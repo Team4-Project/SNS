@@ -20,8 +20,13 @@ public class ImageServiceImpl implements ImageService {
     private final ImageMapper imageMapper;
 
     @Override
-    public void uploadObject(Long postId,List<MultipartFile> images) throws IOException {
+    public void uploadImage(Long postId,List<MultipartFile> images) throws IOException {
         List<String> uploadedImageUrls = s3Util.uploadObject(images);
         imageMapper.insertImageUrl(postId, uploadedImageUrls);
+    }
+
+    @Override
+    public void deleteImage(Long postId) {
+        imageMapper.deleteImageByPostId(postId);
     }
 }
