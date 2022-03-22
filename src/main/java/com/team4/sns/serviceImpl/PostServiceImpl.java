@@ -33,6 +33,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public void deletePost(Long postId) {
         postMapper.deletePost(postId);
     }
