@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team4.sns.mapper.PostHeartMapper">
+    <insert id="insertHeart">
+        INSERT INTO POST_LIKE(user_id, post_id, is_deleted)
+        VALUES (#{userId}, #{postId}, #{isDeleted})
+    </insert>
+
+    <delete id="deleteHeart">
+        DELETE FROM POST_LIKE
+        WHERE user_id = #{userId}
+          AND post_id = #{postId}
+    </delete>
+
+    <select id="isValidateHeart" resultType="int">
+        SELECT post_id
+        FROM POST_LIKE
+        WHERE user_id = #{userId} AND post_id = #{postId}
+    </select>
+
+
+</mapper>

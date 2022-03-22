@@ -4,6 +4,7 @@
 <configuration>
     <mappers>
         <mapper resource="mybatis/mapper/TestMapper.xml"/>
+        <mapper resource="mybatis/mapper/PostHeart.xml"/>
     </mappers>
 </configuration>
 
