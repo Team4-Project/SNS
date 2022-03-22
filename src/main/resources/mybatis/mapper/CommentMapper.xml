@@ -18,11 +18,11 @@
         WHERE id=#{commentId};
     </update>
 
-<!--    <update id="modifyPost">-->
-<!--        UPDATE post-->
-<!--        SET content=#{post.content}-->
-<!--        WHERE id=#{postId} and is_deleted=0;-->
-<!--    </update>-->
+    <update id="modifyCommentByCommentId">
+        UPDATE comment
+        SET content=#{comment.content}
+        WHERE id=#{commentId} and is_deleted=0;
+    </update>
 
 </mapper>
 
