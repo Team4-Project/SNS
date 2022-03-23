@@ -3,6 +3,9 @@ package com.team4.sns.service;
 
 import com.team4.sns.mapper.UserMapper;
 import com.team4.sns.vo.User;
+import com.team4.sns.vo.UserSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -27,15 +30,23 @@ public class UserService {
             return false;
         }
     }
-    public void createUser(User user) {
-        userMapper.createUser(user);
+    public Integer createUser(User user) {
+        // VALIDATE 이메일(account) 중복
+        boolean userResult = getUserByAccount(user);
+        if (userResult == false) {
+            return -1;
+        }
+        if (userMapper.createUser(user) != 1) {
+            return -3;
+        }
+        return 1;
+
     }
 
     public Integer loginUser(User user) {
-        // 요청 들어온 user 정보가 db에 있는지 확인
+        // CHECK 로그인 하려는 user 정보
         User userResult = userMapper.getUserByAccountAndPassword(user.getAccount(), user.getPassword());
-        System.out.println(userResult);
-        // db에 존재하면 로그인 진행하고 user_session 생성
+        // DB에 존재하면 로그인 진행하고 user_session 생성
         if (userResult == null) {
             return -1;
         }
@@ -43,18 +54,43 @@ public class UserService {
         return sessionId;
     }
 
-    public void editUser(User user, Integer userId) {
-        // user:   수정될 user 정보
-        // userId: 현재 로그인한 사람의 userId
-        userMapper.editUser(user, userId);
+    public Integer editUser(User user, Integer sessionId) {
+        // VALIDATE 로그인 유저 세션
+        UserSession userSession = userSessionService.getUserSessionById(sessionId);
+        if (userSession == null) {
+            return -1;
+        }
+        // CHECK "현재 로그인한 유저"와 "수정하려는 유저의 userId"가 다르면 error
+        Integer logInUserId = userSession.getUserId();
+        User originalUser = userMapper.getUserById(user.getId());
+        if (originalUser.getId().equals(logInUserId) == false) {
+            return -2;
+        }
+        if (userMapper.editUser(user) != 1) {
+            return -3;
+        }
+        return 1;
     }
 
-    public void deleteUser(Integer userId) {
-        userMapper.deleteUser(userId);
+    public Integer deleteUser(Integer id, Integer sessionId) {
+        UserSession userSession = userSessionService.getUserSessionById(sessionId);
+        // 존재하지 않는 session 이라면 error
+        // 즉, 세션 시간 만료로 세션 삭제 등등
+        if (userSession == null) {
+            return -1;
+        }
+        // "현재 로그인한 유저"와 "지우려는 유저정보"가 다른 userId를 가지고 있다면 error
+        Integer logInUserId = userSession.getUserId();
+        if (id.equals(logInUserId) == false) {
+            return -2;
+        }
+        if (userMapper.deleteUser(id) != 1) {
+            return -3;
+        }
+        return 1;
     }
     public void getUser(User user) {
         Integer id = userMapper.getUser(user);
-        System.out.println(id);
     }
 
 }

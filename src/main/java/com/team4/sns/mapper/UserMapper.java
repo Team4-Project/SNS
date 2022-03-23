@@ -10,7 +10,7 @@ public interface UserMapper {
     User getUserByAccountAndPassword(@Param("account") String account, @Param("password") String password);
     User getUserByAccount(@Param("account") String account);
     User getUserById(@Param("userId") Integer userId);
-    Integer editUser(@Param("user") User user, @Param("userId") Integer userId);
-    Integer deleteUser(@Param("userId") Integer userId);
+    Integer editUser(@Param("user") User user);
+    Integer deleteUser(@Param("id") Integer id);
     Integer getUser(User user);
 }

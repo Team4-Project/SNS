@@ -20,16 +20,16 @@
         WHERE account = #{account} AND password = #{password} AND is_deleted = 0
     </select>
 
-    <update id="updateUser">
+    <update id="editUser">
         UPDATE user
         SET account = #{user.account}, password = #{user.password}, name = #{user.name}
-        WHERE id = #{userId} AND is_deleted = 0;
+        WHERE id = #{user.id} AND is_deleted = 0;
     </update>
 
     <update id="deleteUser">
         UPDATE user
         SET is_deleted = 1
-        WHERE id = #{userId} AND is_deleted = 0;
+        WHERE id = #{id} AND is_deleted = 0;
     </update>
 
     <select id="getUser" resultType="int">

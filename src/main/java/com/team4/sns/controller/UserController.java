@@ -22,16 +22,15 @@ public class UserController {
 
     @PostMapping("/user/signup")
     public ResponseEntity<String> createUser(@RequestBody User user) {
-        // 신규 user가 생성하려는 이메일(account) validate
-        boolean userResult = userService.getUserByAccount(user);
-        if (userResult == false) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Duplicated Account");
+        Integer result = userService.createUser(user);
+
+        if (result == -1) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FAIL Duplicated Account");
         }
-        // 중복 이메일이 없다면 생성 가능
-        else {
-            userService.createUser(user);
-            return ResponseEntity.status(HttpStatus.OK).body("account signup success");
+        else if (result == -3) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FAIL creating user- SQL");
         }
+        return ResponseEntity.status(HttpStatus.OK).body("create user success");
     }
 
     @PostMapping("/user/login")
@@ -52,38 +51,37 @@ public class UserController {
 
     @PatchMapping("/user")
     public ResponseEntity<String> editUser(@RequestBody User user, @CookieValue("id") Integer sessionId) {
-        UserSession userSession = userSessionService.getUserSessionById(sessionId);
-        // 존재하지 않는 session 이라면 error
-        // ex) 세션 시간 만료로 세션 삭제 등등
-        if (userSession == null) {
+        Integer result = userService.editUser(user, sessionId);
+
+        if (result == -1) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Session expired");
+        }
+        else if (result == -2) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized user");
         }
-        // "현재 로그인한 유저"와 "수정하려는 유저정보"가 다른 userId를 가지고 있다면 error
-        Integer userId = userSession.getUserId();
-        if (userId.equals(user.getId())==false) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized user");
+        else if (result == -3) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FAIL editing user- SQL");
         }
-        userService.editUser(user, userId);
-        return ResponseEntity.status(HttpStatus.OK).body("updateUser success");
+        return ResponseEntity.status(HttpStatus.OK).body("edit user success");
     }
 
     @DeleteMapping("/user")
     public ResponseEntity<String> deleteUser(@RequestParam Integer id, @CookieValue("id") Integer sessionId) {
-        UserSession userSession = userSessionService.getUserSessionById(sessionId);
-        // 존재하지 않는 session 이라면 error
-        // 즉, 세션 시간 만료로 세션 삭제 등등
-        if (userSession == null) {
+        Integer result = userService.deleteUser(id, sessionId);
+
+        if (result == -1) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Session expired");
+        }
+        else if (result == -2) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized user");
         }
-        // "현재 로그인한 유저"와 "지우려는 유저정보"가 다른 userId를 가지고 있다면 error
-        Integer userId = userSession.getUserId();
-        if (id.equals(userId) == false) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized user");
+        else if (result == -3) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FAIL deleting user- SQL");
         }
-        userService.deleteUser(userId);
         return ResponseEntity.status(HttpStatus.OK).body("delete user success");
     }
 
+    // ONLY FOR TESTING - 아래는 무시해주세요!
     @GetMapping("/user-test")
     public ResponseEntity<String> getUser(@RequestBody User user) {
         userService.getUser(user);
