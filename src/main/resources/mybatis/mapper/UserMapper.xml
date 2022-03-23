@@ -23,13 +23,13 @@
     <update id="updateUser">
         UPDATE user
         SET account = #{user.account}, password = #{user.password}, name = #{user.name}
-        WHERE id = #{userId}
+        WHERE id = #{userId} AND is_deleted = 0;
     </update>
 
     <update id="deleteUser">
         UPDATE user
         SET is_deleted = 1
-        WHERE id = #{userId}
+        WHERE id = #{userId} AND is_deleted = 0;
     </update>
 
     <select id="getUser" resultType="int">

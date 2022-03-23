@@ -43,13 +43,13 @@
     <update id="editTag">
         UPDATE tag
         SET content = #{tag.content}
-        WHERE id = #{tag.id} AND post_id = #{tag.postId}
+        WHERE id = #{tag.id} AND post_id = #{tag.postId} AND is_deleted = 0;
     </update>
 
     <update id="deleteTag">
         UPDATE tag
         SET is_deleted = 1
-        WHERE id = #{tag.id} AND post_id = #{tag.postId}
+        WHERE id = #{tag.id} AND post_id = #{tag.postId} AND is_deleted = 0;
     </update>
 
 </mapper>

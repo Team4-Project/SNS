@@ -1,6 +1,8 @@
 INSERT INTO user(account, password, name)
 VALUES ("d", "d", "jaejin");
+INSERT INTO user(account, password, name)
+VALUES ("xx", "xx", "baejiho");
 
-INSERT INTO tag(post_id, content)
-VALUES (1, "feeling")
+INSERT INTO user_session(user_id, name)
+VALUES (2, "baejiho");
 
