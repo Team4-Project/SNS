@@ -6,6 +6,7 @@
         <mapper resource="mybatis/mapper/TestMapper.xml"/>
         <mapper resource="mybatis/mapper/PostMapper.xml"/>
         <mapper resource="mybatis/mapper/ImageMapper.xml"/>
+        <mapper resource="mybatis/mapper/CommentLikeMapper.xml"/>
     </mappers>
 </configuration>
 
