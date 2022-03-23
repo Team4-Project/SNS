@@ -46,7 +46,7 @@ public class TagController {
     }
     // 이미 인증받은 유저가 call 했다고 가정
     // id, postId 가 들어있는 tag를 인자로 받는다고 가정
-    @PatchMapping("/tag")
+    @PutMapping("/tag")
     public ResponseEntity<String> editTag(@RequestBody Tag tag) {
         // 수정하려는 tag content로 빈칸이 들어왔을 경우 error
         if (tag.getContent().length() < 1) {

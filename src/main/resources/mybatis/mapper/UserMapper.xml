@@ -9,6 +9,13 @@
         FROM user
         WHERE account = #{account} AND is_deleted = 0
     </select>
+
+    <select id="getUserById" resultType="com.team4.sns.vo.User">
+        SELECT *
+        FROM user
+        WHERE id = #{id}
+    </select>
+
     <insert id="createUser">
         INSERT INTO user (account, password, name)
         VALUES (#{user.account}, #{user.password}, #{user.name})

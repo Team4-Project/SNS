@@ -49,7 +49,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PatchMapping("/user")
+    @PutMapping("/user")
     public ResponseEntity<String> editUser(@RequestBody User user, @CookieValue("id") Integer sessionId) {
         Integer result = userService.editUser(user, sessionId);
 

@@ -62,8 +62,7 @@ public class UserService {
         }
         // CHECK "현재 로그인한 유저"와 "수정하려는 유저의 userId"가 다르면 error
         Integer logInUserId = userSession.getUserId();
-        User originalUser = userMapper.getUserById(user.getId());
-        if (originalUser.getId().equals(logInUserId) == false) {
+        if (user.getId().equals(logInUserId) == false) {
             return -2;
         }
         if (userMapper.editUser(user) != 1) {
