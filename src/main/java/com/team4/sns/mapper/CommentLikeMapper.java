@@ -8,4 +8,7 @@ public interface CommentLikeMapper {
 
     void likeCommentByUserIdAndCommentId(@Param("userId") Long userId,
                                          @Param("commentId") Long commentId);
+
+    void unLikeCommentByUserIdAndCommentId(@Param("userId") Long userId,
+                                           @Param("commentId") Long commentId);
 }

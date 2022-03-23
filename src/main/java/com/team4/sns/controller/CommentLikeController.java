@@ -19,4 +19,11 @@ public class CommentLikeController {
         Long userId = 1L;
         commentLikeService.likeComment(userId, commentId);
     }
+
+    @GetMapping(value = "/comment/un-like/{comment-id}")
+    public void unLikeComment(@PathVariable(name = "comment-id") Long commentId){
+        // 세션 미적용으로 인한 userId=1 고정
+        Long userId = 1L;
+        commentLikeService.unLikeComment(userId, commentId);
+    }
 }

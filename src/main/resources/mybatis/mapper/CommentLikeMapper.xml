@@ -8,6 +8,14 @@
         INSERT INTO comment_like(user_id, comment_id)
         VALUES (#{userId}, #{commentId})
     </insert>
+
+    <update id="unLikeCommentByUserIdAndCommentId">
+        UPDATE comment_like
+        SET is_deleted=1
+        WHERE user_id=#{userId}
+          AND comment_id=#{commentId}
+          AND is_deleted=0;
+    </update>
     
 </mapper>
 

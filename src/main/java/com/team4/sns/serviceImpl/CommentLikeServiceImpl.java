@@ -15,4 +15,9 @@ public class CommentLikeServiceImpl implements CommentLikeService {
     public void likeComment(Long userId, Long commentId) {
         commentLikeMapper.likeCommentByUserIdAndCommentId(userId, commentId);
     }
+
+    @Override
+    public void unLikeComment(Long userId, Long commentId) {
+        commentLikeMapper.unLikeCommentByUserIdAndCommentId(userId, commentId);
+    }
 }
