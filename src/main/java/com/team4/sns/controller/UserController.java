@@ -22,6 +22,7 @@ public class UserController {
 
     @PostMapping("/user/signup")
     public ResponseEntity<String> createUser(@RequestBody User user) {
+        // 신규 user가 생성하려는 이메일(account) validate
         boolean userResult = userService.getUserByAccount(user);
         if (userResult == false) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Duplicated Account");
@@ -49,8 +50,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PutMapping("/user")
-    public ResponseEntity<String> updateUser(@RequestBody User user, @CookieValue("id") Integer sessionId) {
+    @PatchMapping("/user")
+    public ResponseEntity<String> editUser(@RequestBody User user, @CookieValue("id") Integer sessionId) {
         UserSession userSession = userSessionService.getUserSessionById(sessionId);
         // 존재하지 않는 session 이라면 error
         // ex) 세션 시간 만료로 세션 삭제 등등
@@ -62,7 +63,7 @@ public class UserController {
         if (userId.equals(user.getId())==false) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized user");
         }
-        userService.updateUser(user, userId);
+        userService.editUser(user, userId);
         return ResponseEntity.status(HttpStatus.OK).body("updateUser success");
     }
 
@@ -81,6 +82,12 @@ public class UserController {
         }
         userService.deleteUser(userId);
         return ResponseEntity.status(HttpStatus.OK).body("delete user success");
+    }
+
+    @GetMapping("/user-test")
+    public ResponseEntity<String> getUser(@RequestBody User user) {
+        userService.getUser(user);
+        return ResponseEntity.status(HttpStatus.OK).body("getUser");
     }
 
 }

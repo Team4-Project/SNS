@@ -22,4 +22,13 @@ public class Tag {
         this.postId = postId;
         this.content = content;
     }
+    public Tag(Integer id, Integer postId) {
+        this.id = id;
+        this.postId = postId;
+    }
+    public Tag(Integer id, Integer postId, String content) {
+        this.id = id;
+        this.postId = postId;
+        this.content = content;
+    }
 }

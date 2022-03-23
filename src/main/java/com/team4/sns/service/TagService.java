@@ -23,18 +23,15 @@ public class TagService {
 
     // postId에 해당하는 tag를 생성하고,
     // postId와 만들어진 tagId 기반으로 post_tag 생성
-    public void createTag(Integer postId, String content) {
-        Tag tag = new Tag(postId, content);
-        tagMapper.createTag(tag);
-        Integer tagId = tag.getId();
-        tagPostService.createTagPost(postId, tagId);
-//        String[] tags = tagList.split(",");
-//        for (int i=0; i<tags.length; i++) {
-//            Tag tag = new Tag(postId, tags[i]);
-//            tagMapper.createTag(tag);
-//            Integer tagId = tag.getId();
-//            tagPostService.createTagPost(postId, tagId);
-//        }
+    public void createTag(Integer postId, String contentList) {
+        // contentList 에는 input 으로 들어온 모든 tag의 contents가 '#'을 기준으로 합쳐져있음
+        String[] content = contentList.split("#");
+        for (int i=1; i<content.length; i++) {
+            Tag tag = new Tag(postId, content[i]);
+            tagMapper.createTag(tag);
+            Integer tagId = tag.getId();
+            tagPostService.createTagPost(postId, tagId);
+        }
     }
     public void editTag(Tag tag) {
         tagMapper.editTag(tag);
@@ -44,6 +41,7 @@ public class TagService {
         tagMapper.deleteTag(tag);
         tagPostService.deleteTagPost(tag.getPostId(), tag.getId());
     }
+
     public Tag getTag(Integer tagId) {
         return tagMapper.getTag(tagId);
     }

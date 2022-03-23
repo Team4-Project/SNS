@@ -32,5 +32,11 @@
         WHERE id = #{userId}
     </update>
 
+    <select id="getUser" resultType="int">
+        SELECT id
+        FROM user
+        WHERE id = #{id}
+    </select>
+
 </mapper>
 

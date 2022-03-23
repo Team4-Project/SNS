@@ -17,6 +17,7 @@ public class UserService {
         this.userSessionService = userSessionService;
     }
 
+    // 신규 user가 생성하려는 이메일(account) 중복 체크
     public boolean getUserByAccount(User user) {
         User userResult = userMapper.getUserByAccount(user.getAccount());
         if (userResult == null) {
@@ -42,15 +43,18 @@ public class UserService {
         return sessionId;
     }
 
-    public void updateUser(User user, Integer userId) {
+    public void editUser(User user, Integer userId) {
         // user:   수정될 user 정보
         // userId: 현재 로그인한 사람의 userId
-        userMapper.updateUser(user, userId);
+        userMapper.editUser(user, userId);
     }
 
     public void deleteUser(Integer userId) {
         userMapper.deleteUser(userId);
     }
-
+    public void getUser(User user) {
+        Integer id = userMapper.getUser(user);
+        System.out.println(id);
+    }
 
 }

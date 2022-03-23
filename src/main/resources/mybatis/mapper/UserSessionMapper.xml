@@ -16,10 +16,10 @@
     <select id="getUserSessionById" resultType="com.team4.sns.vo.UserSession">
         SELECT *
         FROM user_session
-        WHERE id = #{sessionId}
+        WHERE id = #{sessionId} AND is_deleted = 0
     </select>
 
-    <delete id="delete">
+    <delete id="deleteUserSession">
         DELETE FROM user_session
         WHERE id = #{sessionId};
     </delete>
