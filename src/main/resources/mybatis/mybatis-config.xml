@@ -15,6 +15,7 @@
         <mapper resource="mybatis/mapper/TagMapper.xml"/>
         <mapper resource="mybatis/mapper/TagPostMapper.xml"/>
         <mapper resource="mybatis/mapper/ReplyMapper.xml"/>
+        <mapper resource="mybatis/mapper/ReplyLikeMapper.xml"/>
     </mappers>
 
 </configuration>

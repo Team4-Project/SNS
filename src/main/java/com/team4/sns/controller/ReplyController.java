@@ -3,20 +3,15 @@ package com.team4.sns.controller;
 import com.team4.sns.service.ReplyService;
 import com.team4.sns.service.UserSessionService;
 import com.team4.sns.vo.Reply;
-import com.team4.sns.vo.UserSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReplyController {
     private ReplyService replyService;
-    private UserSessionService userSessionService;
-
-    public ReplyController(ReplyService replyService, UserSessionService userSessionService) {
+    public ReplyController(ReplyService replyService) {
         this.replyService = replyService;
-        this.userSessionService = userSessionService;
     }
 
     // reply(Integer commentId, String content)

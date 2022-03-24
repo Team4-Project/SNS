@@ -34,7 +34,6 @@ public class ReplyService {
             return -3;
         }
         return 1;
-
     }
 
     public Integer editReply(Reply reply, Integer sessionId) {

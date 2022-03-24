@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team4.sns.mapper.ReplyLikeMapper">
+
+    <insert id="likeReply">
+        INSERT INTO reply_like (reply_id, user_id)
+        VALUES (#{id}, #{userId})
+    </insert>
+
+    <update id="unlikeReply">
+        UPDATE reply_like
+        SET is_deleted = 1
+        WHERE reply_id = #{id} AND user_id = #{userId} AND is_deleted = 0;
+    </update>
+
+</mapper>
+
