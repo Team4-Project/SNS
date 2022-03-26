@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team4.sns.mapper.UserSessionMapper">
+
+
+    <insert id="createUserSession" parameterType="com.team4.sns.vo.UserSession">
+        INSERT INTO user_session (user_id, name)
+        VALUES (#{userSession.userId}, #{userSession.name})
+        <selectKey keyProperty="userSession.id" resultType="Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getUserSessionById" resultType="com.team4.sns.vo.UserSession">
+        SELECT *
+        FROM user_session
+        WHERE id = #{sessionId}
+    </select>
+
+    <delete id="deleteUserSession">
+        DELETE FROM user_session
+        WHERE id = #{sessionId};
+    </delete>
+
+</mapper>
+

@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface ImageMapper {
     void insertImageUrl(@Param("postId") Long postId, @Param("imageUrls") List<String> imageUrls);
+    void deleteImageByPostId(@Param("postId") Long postId);
 }

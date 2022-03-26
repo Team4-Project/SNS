@@ -29,16 +29,24 @@ public class PostServiceImpl implements PostService {
         Long registeredPostId = post.getId();
 
         if(images != null)
-            imageService.uploadObject(registeredPostId, images);
+            imageService.uploadImage(registeredPostId, images);
     }
 
     @Override
+    @Transactional
     public void deletePost(Long postId) {
         postMapper.deletePost(postId);
     }
 
     @Override
-    public void modifyPost(Long postId, Post post) {
+    @Transactional
+    public void modifyPost(Long postId, Post post, List<MultipartFile> images) throws IOException {
+
+        if(images != null){
+            imageService.deleteImage(postId);
+            imageService.uploadImage(postId, images);
+        }
+
         postMapper.modifyPost(postId, post);
     }
 }

@@ -33,7 +33,8 @@ public class PostController {
 
     @PatchMapping(value ="/post/{post-id}")
     public void modifyPost(@PathVariable(name ="post-id") Long postId,
-                           @RequestBody @Validated PostRequestDto postRequestDto){
-        postService.modifyPost(postId, postRequestDto.toPost());
+                           @RequestPart(name = "images", required = false) List<MultipartFile> images,
+                           @Validated PostRequestDto postRequestDto) throws IOException {
+        postService.modifyPost(postId, postRequestDto.toPost(), images);
     }
 }

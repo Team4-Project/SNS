@@ -6,17 +6,18 @@ import lombok.Getter;
 import java.sql.Timestamp;
 
 @Getter
-public class Post {
+public class Comment {
 
     private Long id;
+    private Long postId;
     private Long userId;
     private String content;
-    private Timestamp createdAt;
+    private Timestamp wroteAt;
     private Timestamp updatedAt;
-    private Short isDeleted;
 
     @Builder
-    public Post(Long userId, String content){
+    public Comment(Long postId, Long userId, String content){
+        this.postId = postId;
         this.userId = userId;
         this.content = content;
     }
