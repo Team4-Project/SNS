@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team4.sns.mapper.TagMapper">
+
+    <select id="getTagListByPostId" resultType="com.team4.sns.vo.Tag">
+        SELECT *
+        FROM tag
+        WHERE post_id = #{postId}
+    </select>
+
+    <select id="getTagListSearch" resultType="com.team4.sns.vo.Tag">
+        SELECT
+            p.id AS id,
+            p.user_id AS user_id,
+            p.content AS content,
+            p.created_at AS created_at,
+            p.updated_at AS updated_at,
+            p.is_deleted AS is_deleted
+        FROM tag AS t
+        LEFT JOIN post AS p
+        ON t.post_id = p.id
+        WHERE t.content = #{content} AND p.is_deleted = 0 AND t.is_deleted = 0
+        ORDER BY DESC p.updated_at
+        LIMIT #{limit} OFFSET #{offset};
+    </select>
+
+    <insert id="createTag" parameterType="com.team4.sns.vo.Tag">
+        INSERT INTO tag (post_id, content)
+        VALUES (#{tag.postId}, #{tag.content})
+        <selectKey keyProperty="tag.id" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getTag" resultType="com.team4.sns.vo.Tag">
+        SELECT *
+        FROM tag
+        WHERE id = #{tagId}
+    </select>
+
+    <update id="editTag">
+        UPDATE tag
+        SET content = #{tag.content}
+        WHERE id = #{tag.id} AND post_id = #{tag.postId} AND is_deleted = 0;
+    </update>
+
+    <update id="deleteTag">
+        UPDATE tag
+        SET is_deleted = 1
+        WHERE id = #{tag.id} AND post_id = #{tag.postId} AND is_deleted = 0;
+    </update>
+
+</mapper>
+

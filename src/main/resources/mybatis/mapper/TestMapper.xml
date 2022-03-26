@@ -5,8 +5,8 @@
 <mapper namespace="com.team4.sns.mapper.TestMapper">
 
     <select id="test" resultType="java.lang.String">
-        SELECT email
-        FROM user
+        SELECT content
+        FROM post
         LIMIT 1;
     </select>
 
