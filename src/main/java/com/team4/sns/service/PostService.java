@@ -9,5 +9,5 @@ import java.util.List;
 public interface PostService {
     void writePost(Post post, List<MultipartFile> images) throws IOException;
     void deletePost(Long postId);
-    void modifyPost(Long postId, Post post);
+    void modifyPost(Long postId, Post post, List<MultipartFile> images) throws IOException;
 }
