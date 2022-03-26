@@ -1,6 +1,6 @@
 package com.team4.sns.serviceImpl;
 
-import com.team4.sns.DTO.HeartDTO;
+import com.team4.sns.controller.dto.HeartDto;
 import com.team4.sns.mapper.PostHeartMapper;
 import com.team4.sns.service.PostHeartService;
 import lombok.AllArgsConstructor;
@@ -12,17 +12,17 @@ public class PostHeartServiceImpl implements PostHeartService {
 
     private PostHeartMapper postHeartMapper;
     @Override
-    public void insertHeart(HeartDTO heartDTO) {
+    public void insertHeart(HeartDto heartDTO) {
         postHeartMapper.insertHeart(heartDTO);
     }
 
     @Override
-    public void deleteHeart(HeartDTO heartDTO) {
+    public void deleteHeart(HeartDto heartDTO) {
         postHeartMapper.deleteHeart(heartDTO);
     }
 
     @Override
-    public boolean isValidateHeart(HeartDTO heartDTO) {
+    public boolean isValidateHeart(HeartDto heartDTO) {
         if (postHeartMapper.isValidateHeart(heartDTO) != null) {
             return true;
         }

@@ -1,14 +1,14 @@
 package com.team4.sns.mapper;
 
-import com.team4.sns.DTO.HeartDTO;
+import com.team4.sns.controller.dto.HeartDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PostHeartMapper {
 
-    void insertHeart(HeartDTO heartDTO);
+    void insertHeart(HeartDto heartDTO);
 
-    void deleteHeart(HeartDTO heartDTO);
+    void deleteHeart(HeartDto heartDTO);
 
-    Integer isValidateHeart(HeartDTO heartDTO);
+    Integer isValidateHeart(HeartDto heartDTO);
 }
