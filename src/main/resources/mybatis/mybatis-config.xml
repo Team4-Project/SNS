@@ -12,6 +12,7 @@
         <mapper resource="mybatis/mapper/TestMapper.xml"/>
         <mapper resource="mybatis/mapper/PostMapper.xml"/>
         <mapper resource="mybatis/mapper/ImageMapper.xml"/>
+        <mapper resource="mybatis/mapper/CommentLikeMapper.xml"/>
         <mapper resource="mybatis/mapper/CommentMapper.xml"/>
         <mapper resource="mybatis/mapper/UserMapper.xml"/>
         <mapper resource="mybatis/mapper/UserSessionMapper.xml"/>
