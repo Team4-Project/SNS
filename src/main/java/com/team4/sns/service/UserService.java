@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -90,6 +91,10 @@ public class UserService {
     }
     public void getUser(User user) {
         Integer id = userMapper.getUser(user);
+    }
+
+    public List<User> getSevenRecommendationAboutUser(){
+        return userMapper.getSevenRecommendationAboutUser();
     }
 
 }

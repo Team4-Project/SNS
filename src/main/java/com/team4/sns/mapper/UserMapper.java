@@ -4,6 +4,8 @@ import com.team4.sns.vo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     Integer createUser(@Param("user") User user);
@@ -13,4 +15,5 @@ public interface UserMapper {
     Integer editUser(@Param("user") User user);
     Integer deleteUser(@Param("id") Integer id);
     Integer getUser(User user);
+    List<User> getSevenRecommendationAboutUser();
 }

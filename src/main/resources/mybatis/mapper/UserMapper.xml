@@ -45,5 +45,11 @@
         WHERE id = #{id}
     </select>
 
+    <select id="getSevenRecommendationAboutUser" resultType="com.team4.sns.vo.User">
+        SELECT name, profession, image_url as imageUrl
+        FROM user
+        LIMIT 7;
+    </select>
+
 </mapper>
 
