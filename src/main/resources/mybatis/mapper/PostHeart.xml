@@ -7,18 +7,12 @@
         INSERT INTO POST_LIKE(user_id, post_id, is_deleted)
         VALUES (#{userId}, #{postId}, #{isDeleted})
     </insert>
-
-    <delete id="deleteHeart">
-        DELETE FROM POST_LIKE
+    
+    <update id="updateHeartCancel">
+        UPDATE POST_LIKE
+        SET is_deleted = 1
         WHERE user_id = #{userId}
-          AND post_id = #{postId}
-    </delete>
-
-    <select id="isValidateHeart" resultType="int">
-        SELECT post_id
-        FROM POST_LIKE
-        WHERE user_id = #{userId} AND post_id = #{postId}
-    </select>
-
+            AND post_id = #{postId}
+    </update>
 
 </mapper>
