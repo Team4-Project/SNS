@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 public class Post {
@@ -13,6 +14,12 @@ public class Post {
     private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+    private User user;
+    private List<String> postImageList;
+    private Integer likeNum;
+    private Integer commentNum;
+    private Integer shareNum;
 
     @Builder
     public Post(Long userId, String content){

@@ -1,6 +1,8 @@
 package com.team4.sns.controller;
 
+import com.team4.sns.service.PostService;
 import com.team4.sns.service.UserService;
+import com.team4.sns.vo.Post;
 import com.team4.sns.vo.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import java.util.List;
 public class PageController {
 
     private final UserService userService;
+    private final PostService postService;
 
     @RequestMapping("/user/signup")
     public String getSignupPage() {
@@ -24,8 +27,10 @@ public class PageController {
     @RequestMapping("/")
     public String getIndexPage(Model model) {
         List<User> recommendedUsers = userService.getSevenRecommendationAboutUser();
+        List<Post> postList = postService.getPostList();
 
         model.addAttribute("recommendedUsers", recommendedUsers);
+        model.addAttribute("postList", postList);
         return "index";
     }
 }

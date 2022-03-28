@@ -2,7 +2,10 @@ package com.team4.sns.controller;
 
 import com.team4.sns.controller.dto.PostRequestDto;
 import com.team4.sns.service.PostService;
+import com.team4.sns.vo.Post;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +18,11 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+
+    @GetMapping(value = "/post")
+    public ResponseEntity<List<Post>> getPostList(){
+        return new ResponseEntity<>(postService.getPostList(), HttpStatus.OK);
+    }
 
     @PostMapping(value = "/post")
     public void writePost(@Validated PostRequestDto postRequestDto,
