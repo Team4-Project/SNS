@@ -38,4 +38,7 @@ public class PageController {
     public String getProfilePage(){
         return "profile";
     }
+
+    @RequestMapping("/user/login")
+    public String getLogInPage() { return "login"; }
 }
