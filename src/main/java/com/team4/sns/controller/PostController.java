@@ -2,7 +2,9 @@ package com.team4.sns.controller;
 
 import com.team4.sns.controller.dto.PostRequestDto;
 import com.team4.sns.service.PostService;
+import com.team4.sns.service.UserSessionService;
 import com.team4.sns.vo.Post;
+import com.team4.sns.vo.UserSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.rmi.server.ExportException;
 import java.util.List;
 
 @RestController
@@ -18,6 +21,7 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final UserSessionService userSessionService;
 
     @GetMapping(value = "/post")
     public ResponseEntity<List<Post>> getPostList(){
@@ -26,10 +30,16 @@ public class PostController {
 
     @PostMapping(value = "/post")
     public void writePost(@Validated PostRequestDto postRequestDto,
-                          @RequestPart(name = "images", required = false) List<MultipartFile> images) throws IOException {
+                          @RequestPart(name = "images", required = false) List<MultipartFile> images,
+                          @CookieValue("id")Integer sessionId) throws IOException {
 
-        //세션 구현전 이기에, userId =1로 고정
-        postRequestDto.setUserId(1L);
+        UserSession userSession = userSessionService.getUserSessionById(sessionId);
+        if (userSession == null) {
+            throw new ExportException("wrong");
+        }
+
+        Long logInUserId = Integer.toUnsignedLong(userSession.getUserId());
+        postRequestDto.setUserId(logInUserId);
 
         postService.writePost(postRequestDto.toPost(), images);
     }

@@ -40,4 +40,47 @@ $(function() {
 
     });
 
+    $(document).on("click", "#postModalCancelButton", function (){
+        $(this).parent().parent().children().children().children().children("#postRegisterArea").val("");
+        $(this).parent().parent().children().children().children().children("#postImageRegister").val("");
+    });
+
+    $(document).on("click", "#postUploadButton", function (){
+
+        var session_id = $.cookie('id')
+        const content = $("#postRegisterArea").val();
+        const imageList = $("#postImageRegister")[0].files;
+
+        console.log("sessionId", session_id);
+        console.log("textInput : ", content);
+        console.log("imageInput : ", imageList)
+
+        const data = new FormData();
+        data.append("content", content);
+        for(var i=0; i<imageList.length; i++){
+            var image = imageList[i];
+            data.append("images", image)
+        }
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/post",
+            data : data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            beforeSend : function() {
+                console.log("보낸다~")
+            },
+            success: function (data) {
+                console.log("성공함 db 봐봐라");
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            }
+        })
+    })
+
 });
