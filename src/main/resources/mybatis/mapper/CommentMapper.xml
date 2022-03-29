@@ -4,6 +4,23 @@
 
 <mapper namespace="com.team4.sns.mapper.CommentMapper">
 
+    <resultMap id="commentResultMap" type="com.team4.sns.vo.Comment">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="wrote_at" property="wroteAt"/>
+        <result column="user_image_url" property="user.imageUrl"/>
+        <result column="user_name" property="user.name"/>
+    </resultMap>
+
+    <select id="getCommentListByPostId" resultMap="commentResultMap">
+        select c.id, c.content, c.wrote_at, u.image_url as user_image_url, u.name as user_name
+        from comment c
+                 inner join user u
+                            on c.user_id = u.id
+        where c.post_id=#{postId} and c.is_deleted=0 and u.is_deleted=0
+        limit 4;
+    </select>
+
     <insert id="writeCommentByPostId" parameterType="com.team4.sns.vo.Comment">
         INSERT INTO comment(post_id, user_id, content)
         VALUES (#{comment.postId}, #{comment.userId}, #{comment.content})

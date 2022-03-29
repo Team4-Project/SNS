@@ -24,18 +24,13 @@ public class PageController {
         return "signup";
     }
 
-    @RequestMapping("/")
+    @RequestMapping(value = {"/", "/index.html"})
     public String getIndexPage(Model model) {
         List<User> recommendedUsers = userService.getSevenRecommendationAboutUser();
         List<Post> postList = postService.getPostList();
 
         model.addAttribute("recommendedUsers", recommendedUsers);
         model.addAttribute("postList", postList);
-        return "index";
-    }
-
-    @RequestMapping("/index.html")
-    public String getIndexPageByHtmlUrl(){
         return "index";
     }
 
