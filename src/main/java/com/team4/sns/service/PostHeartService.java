@@ -1,12 +1,11 @@
 package com.team4.sns.service;
 
-import com.team4.sns.controller.dto.HeartDto;
+import com.team4.sns.vo.PostHeartVO;
 
 public interface PostHeartService {
 
-    void insertHeart(HeartDto heartDTO);
+    void insertHeart(PostHeartVO postHeartVO);
 
-    void deleteHeart(HeartDto heartDTO);
+    void deleteHeart(PostHeartVO postHeartVO);
 
-    boolean isValidateHeart(HeartDto heartDTO);
 }
