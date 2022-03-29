@@ -4,11 +4,7 @@ package com.team4.sns.service;
 import com.team4.sns.mapper.UserMapper;
 import com.team4.sns.vo.User;
 import com.team4.sns.vo.UserSession;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -46,6 +42,7 @@ public class UserService {
     public Integer loginUser(User user) {
         // CHECK 로그인 하려는 user 정보
         User userResult = userMapper.getUserByAccountAndPassword(user.getAccount(), user.getPassword());
+
         // DB에 존재하면 로그인 진행하고 user_session 생성
         if (userResult == null) {
             return -1;

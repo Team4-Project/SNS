@@ -37,6 +37,8 @@ src/main/resources/templates
 src/main/resources/application.properties
 src/main/resources/application-oauth2.properties
 src/main/resources*/*.properties
+src/main/resources/static/js
+src/main/resources/templaces/index.mustache
 .properties
 /.mvn/
 src/main/resources/*.json
