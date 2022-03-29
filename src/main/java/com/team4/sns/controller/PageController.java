@@ -33,4 +33,14 @@ public class PageController {
         model.addAttribute("postList", postList);
         return "index";
     }
+
+    @RequestMapping("/index.html")
+    public String getIndexPageByHtmlUrl(){
+        return "index";
+    }
+
+    @RequestMapping("/profile.html")
+    public String getProfilePage(){
+        return "profile";
+    }
 }
