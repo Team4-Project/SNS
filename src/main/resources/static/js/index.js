@@ -45,6 +45,19 @@ $(function() {
         $(this).parent().parent().children().children().children().children("#postImageRegister").val("");
     });
 
+    $(document).on("click", "#postImages", function (){
+        const children = $(this).children();
+        console.log(children);
+
+        console.log(children[0].getAttribute("src"));
+        console.log(children[1].getAttribute("src"));
+        console.log(children[2].getAttribute("src"));
+
+        $("#image1").attr("src", children[0].getAttribute("src"))
+        $("#image2").attr("src", children[1].getAttribute("src"))
+        $("#image3").attr("src", children[2].getAttribute("src"))
+    })
+
     $(document).on("click", "#postUploadButton", function (){
 
         var session_id = $.cookie('id')

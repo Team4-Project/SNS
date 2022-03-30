@@ -119,11 +119,11 @@
                                                     </div>
                                                     <div class="my-2">
                                                         <p class="text-dark">{{content}}</p>
-                                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#imageModal">
+                                                        <div id="postImages" href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#imageModal">
                                                             {{#postImageList}}
-                                                                <img src="{{.}}" class="img-fluid rounded mb-3" alt="post-img">
+                                                                <img id="image" src="{{.}}" class="img-fluid rounded mb-3" alt="post-img">
                                                             {{/postImageList}}
-                                                        </a>
+                                                        </div>
                                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                                             <div>
                                                                 <span class="text-muted text-decoration-none d-flex align-items-start fw-light">
@@ -654,15 +654,15 @@
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                                 </div>
 
-                                <div class="carousel-inner">
+                                <div id="imageSlider" class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="img/post-img1.jpg" class="d-block w-100" alt="...">
+                                        <img id="image1" src="img/post-img1.jpg" class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="img/post-img2.jpg" class="d-block w-100" alt="...">
+                                        <img id="image2" src="img/post-img2.jpg" class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="img/post-img3.jpg" class="d-block w-100" alt="...">
+                                        <img id="image3" src="img/post-img3.jpg" class="d-block w-100" alt="...">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
