@@ -14,4 +14,5 @@ public interface PostMapper {
     void deletePost(@Param("postId") Long postId);
     void modifyPost(@Param("postId") Long postId,
                     @Param("post") Post post);
+    List<Post> getPostByKeyword(@Param("keyword") String keyword);
 }

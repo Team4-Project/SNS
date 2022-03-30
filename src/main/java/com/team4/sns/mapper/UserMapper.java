@@ -16,4 +16,5 @@ public interface UserMapper {
     Integer deleteUser(@Param("id") Integer id);
     Integer getUser(User user);
     List<User> getSevenRecommendationAboutUser();
+    List<User> getUserByKeyword(@Param("keyword") String keyword);
 }

@@ -97,4 +97,7 @@ public class UserService {
         return userMapper.getSevenRecommendationAboutUser();
     }
 
+    public List<User> getUserByKeyword(String keyword){
+        return userMapper.getUserByKeyword(keyword);
+    }
 }

@@ -55,4 +55,9 @@ public class PostServiceImpl implements PostService {
 
         postMapper.modifyPost(postId, post);
     }
+
+    @Override
+    public List<Post> getPostByKeyword(String keyword) {
+        return postMapper.getPostByKeyword(keyword);
+    }
 }
