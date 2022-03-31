@@ -10,8 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
+import java.util.List;
+import java.util.NoSuchElementException;
+=======
 import java.io.IOException;
 import java.util.List;
+>>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
 
 @Service
 @Slf4j
@@ -106,4 +111,11 @@ public class UserService {
         Integer id = userMapper.getUser(user);
     }
 
+    public List<User> getSevenRecommendationAboutUser(){
+        return userMapper.getSevenRecommendationAboutUser();
+    }
+
+    public List<User> getUserByKeyword(String keyword){
+        return userMapper.getUserByKeyword(keyword);
+    }
 }

@@ -23,6 +23,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
+    public List<Post> getPostList() {
+        return postMapper.getPostList();
+    }
+
+    @Override
+    @Transactional
     public void writePost(Post post, List<MultipartFile> images) throws IOException {
 
         postMapper.writePost(post);
@@ -48,5 +54,10 @@ public class PostServiceImpl implements PostService {
         }
 
         postMapper.modifyPost(postId, post);
+    }
+
+    @Override
+    public List<Post> getPostByKeyword(String keyword) {
+        return postMapper.getPostByKeyword(keyword);
     }
 }

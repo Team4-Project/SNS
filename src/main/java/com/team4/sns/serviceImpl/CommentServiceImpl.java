@@ -6,11 +6,18 @@ import com.team4.sns.vo.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
     private final CommentMapper commentMapper;
+
+    @Override
+    public List<Comment> getCommentList(Long postId) {
+        return commentMapper.getCommentListByPostId(postId);
+    }
 
     @Override
     public void writeComment(Comment comment) {

@@ -2,17 +2,25 @@ package com.team4.sns.controller;
 
 import com.team4.sns.controller.dto.CommentRequestDto;
 import com.team4.sns.service.CommentService;
+import com.team4.sns.vo.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class CommentController {
 
     private final CommentService commentService;
+
+    @GetMapping(value = "/comment/{post-id}")
+    public ResponseEntity<List<Comment>> getCommentList(@PathVariable("post-id") Long postId){
+        return new ResponseEntity<>(commentService.getCommentList(postId), HttpStatus.OK);
+    }
 
     @PostMapping(value = "/comment")
     public void writeComment(@RequestBody @Validated CommentRequestDto commentRequestDto){
@@ -32,7 +40,7 @@ public class CommentController {
         commentService.modifyComment(commentId, commentRequestDto.toComment());
     }
 
-    @GetMapping(value ="/comment/{comment-id}")
+    @GetMapping(value ="/comment/content/{comment-id}")
     public ResponseEntity<String> getCommentContentWhenModifyComment(@PathVariable(value = "comment-id") Long commentId){
         return new ResponseEntity<String>(commentService.getCommentContent(commentId), HttpStatus.OK);
     }

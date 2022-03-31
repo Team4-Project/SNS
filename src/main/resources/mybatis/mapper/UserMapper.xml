@@ -50,5 +50,17 @@
         WHERE id = #{id}
     </select>
 
+    <select id="getSevenRecommendationAboutUser" resultType="com.team4.sns.vo.User">
+        SELECT id, name, profession, image_url as imageUrl
+        FROM user
+        LIMIT 7;
+    </select>
+
+    <select id="getUserByKeyword" resultType="com.team4.sns.vo.User">
+        SELECT id, name, profession, image_url as imageUrl
+        FROM user
+        WHERE name like concat('%', #{keyword}, '%');
+    </select>
+
 </mapper>
 

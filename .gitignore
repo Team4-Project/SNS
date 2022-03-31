@@ -33,9 +33,11 @@ build/
 .vscode/
 
 ### ###
+<<<<<<< HEAD
+=======
 #src/main/resources/templates
+>>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
 src/main/resources/application.properties
-src/main/resources/application-oauth2.properties
 src/main/resources*/*.properties
 src/main/resources/static/custom.js
 src/main/resources/templaces/index.mustache
