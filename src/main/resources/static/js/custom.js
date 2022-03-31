@@ -7,7 +7,6 @@ Version: 1.0
 
 (function ($) {
 	"use strict"; // Start of use strict
-
 	var Popular = {
 		init: function () {
 			this.Basic.init();

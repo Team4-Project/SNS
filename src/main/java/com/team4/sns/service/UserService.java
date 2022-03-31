@@ -2,23 +2,33 @@ package com.team4.sns.service;
 
 
 import com.team4.sns.mapper.UserMapper;
+import com.team4.sns.util.S3Util;
 import com.team4.sns.vo.User;
 import com.team4.sns.vo.UserSession;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.NoSuchElementException;
+=======
+import java.io.IOException;
+import java.util.List;
+>>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
 
 @Service
+@Slf4j
 public class UserService {
     private UserMapper userMapper;
     private UserSessionService userSessionService;
+    private final S3Util s3Util;
 
-    public UserService(UserMapper userMapper, UserSessionService userSessionService) {
+    public UserService(UserMapper userMapper, UserSessionService userSessionService, S3Util s3Util) {
         this.userMapper = userMapper;
         this.userSessionService = userSessionService;
+        this.s3Util = s3Util;
     }
 
     // 신규 user가 생성하려는 이메일(account) 중복 체크
@@ -47,6 +57,7 @@ public class UserService {
     public Integer loginUser(User user) {
         // CHECK 로그인 하려는 user 정보
         User userResult = userMapper.getUserByAccountAndPassword(user.getAccount(), user.getPassword());
+
         // DB에 존재하면 로그인 진행하고 user_session 생성
         if (userResult == null) {
             return -1;
@@ -55,17 +66,24 @@ public class UserService {
         return sessionId;
     }
 
-    public Integer editUser(User user, Integer sessionId) {
+    public Integer editUser(User user, List<MultipartFile> images, Integer sessionId) throws IOException {
         // VALIDATE 로그인 유저 세션
         UserSession userSession = userSessionService.getUserSessionById(sessionId);
         if (userSession == null) {
             return -1;
         }
-        // CHECK "현재 로그인한 유저"와 "수정하려는 유저의 userId"가 다르면 error
+
+        // sessionId를 통해 현재 로그인한 사람의 id를 구함
         Integer logInUserId = userSession.getUserId();
-        if (user.getId().equals(logInUserId) == false) {
-            return -2;
+        user.setId(logInUserId);
+
+        // 프로필 이미지 upload 되었으면 함께 반영
+        if(images != null) {
+            List<String> uploadedImageUrls = s3Util.uploadObject(images);
+            String imageUrl = uploadedImageUrls.get(0);
+            user.setImageUrl(imageUrl);
         }
+
         if (userMapper.editUser(user) != 1) {
             return -3;
         }

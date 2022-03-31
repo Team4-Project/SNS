@@ -3,13 +3,15 @@ package com.team4.sns.controller;
 import com.team4.sns.service.UserService;
 import com.team4.sns.service.UserSessionService;
 import com.team4.sns.vo.User;
-import com.team4.sns.vo.UserSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -37,9 +39,10 @@ public class UserController {
     public ResponseEntity loginUser(@RequestBody User user, HttpServletResponse response) {
         // 로그인 시도 후, session 생성 시도 후 sessionId 가져옴
         Integer sessionId = userService.loginUser(user);
+
         // 로그인 실패 했다면 sessionId = -1 error
         if (sessionId == -1) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         // sessionId 기반으로 쿠키 생성 후 response에 담아서 같이 보냄
         Cookie cookie = new Cookie("id", String.valueOf(sessionId));
@@ -50,8 +53,10 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity<String> editUser(@RequestBody User user, @CookieValue("id") Integer sessionId) {
-        Integer result = userService.editUser(user, sessionId);
+    public ResponseEntity<String> editUser(User user,
+                                           @RequestPart(name = "images", required = false) List<MultipartFile> images,
+                                           @CookieValue("id") Integer sessionId) throws IOException {
+        Integer result = userService.editUser(user, images, sessionId);
 
         if (result == -1) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Session expired");

@@ -1,11 +1,11 @@
-package com.team4.sns.controller.dto;
+package com.team4.sns.vo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class HeartDto {
+public class PostHeartVO {
 
     int userId;
     int postId;
