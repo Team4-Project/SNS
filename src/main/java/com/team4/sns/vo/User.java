@@ -39,4 +39,12 @@ public class User {
         this.account = account;
         this.name = name;
     }
+    public User(String nickname, String profession, Integer gender, String content, String image, Integer isAuth) {
+        this.nickname = nickname;
+        this.profession = profession;
+        this.gender = gender;
+        this.content = content;
+        this.imageUrl = image;
+        this.isAuth = isAuth;
+    }
 }

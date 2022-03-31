@@ -47,10 +47,9 @@
                   <div class="feeds">
                      <!-- Feed Item -->
                      <div class="bg-white mt-5 p-4 feed-item rounded-4 shadow-sm faq-page">
-
                         <div class="row justify-content-center">
                            <div class="col-lg-12">
-                              <div class="form-floating-space" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                              <form class="form-floating-space" id="login-form" data-sb-form-api-token="API_TOKEN" onsubmit="return false" method="post">
                                  <!-- Name input-->
                                  <div class="form-floating mb-3">
                                     <input class="form-control rounded-5" id="login-account" type="text" placeholder="Enter Account"/>
@@ -63,7 +62,7 @@
                                  </div>
                                  <!-- Submit Button-->
                                  <div class="d-grid"><button class="btn btn-primary w-100 rounded-5 text-decoration-none py-3 fw-bold text-uppercase m-0" id="login-button" type="submit">Login</button></div>
-                              </div>
+                              </form>
                            </div>
                         </div>
                      </div>

@@ -6,9 +6,12 @@ import com.team4.sns.vo.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -50,8 +53,10 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity<String> editUser(@RequestBody User user, @CookieValue("id") Integer sessionId) {
-        Integer result = userService.editUser(user, sessionId);
+    public ResponseEntity<String> editUser(User user,
+                                           @RequestPart(name = "images", required = false) List<MultipartFile> images,
+                                           @CookieValue("id") Integer sessionId) throws IOException {
+        Integer result = userService.editUser(user, images, sessionId);
 
         if (result == -1) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Session expired");
