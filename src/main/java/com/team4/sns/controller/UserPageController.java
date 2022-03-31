@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserPageController {
 
-    @RequestMapping("/index")
-    public String getIndexPage() {
-        return "index";
-    }
-
     @RequestMapping("/user/signup")
     public String getSignupPage() {
         return "signup";
@@ -21,6 +16,5 @@ public class UserPageController {
 
     @RequestMapping("/user/profile")
     public String getUserProfileChangePage() { return "userProfileChange"; }
-
 
 }

@@ -4,32 +4,20 @@ $(function(){
     var session_id = $.cookie('id');
     if(session_id) {
         $("#logout-menu").show();
-<<<<<<< HEAD
-=======
         $("#change-profile-menu").show();
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         $("#login-menu").hide();
         $("#signup-menu").hide();
     } else {
         $("#logout-menu").hide();
-<<<<<<< HEAD
-=======
         $("#change-profile-menu").hide();
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         $("#login-menu").show();
         $("#signup-menu").show();
     }
 
      //로그아웃 시 유저 세션 삭제
-<<<<<<< HEAD
-    $(document).on("click", "#logout-menu",function(){
-        var session_id = $.cookie('id');
-
-=======
     $(document).on("click","#logout-button",function(){
         var session_id = $.cookie('id');
         alert("로그아웃 합니다");
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         $.ajax({
             method: "DELETE",
             url: "/user/session",
@@ -39,21 +27,12 @@ $(function(){
         })
         .done(function(response) {
             document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-<<<<<<< HEAD
-            window.location.href = "/";
-        });
-    });
-
-    // 로그인할때
-    $("#login-button").click(function(){
-=======
             window.location.href = "/trending";
         });
     });
 
     // 로그인 버튼 클릭시
     $("#login-form").submit(function(e){
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         var account = $("#login-account").val();
         var password = $("#login-password").val();
         $.ajax({
@@ -66,33 +45,20 @@ $(function(){
             contentType: "application/json"
         })
         .done(function(response) {
-<<<<<<< HEAD
-            console.log(response);
-            window.location.href="/";
-=======
             console.log("로그인 성공");
             window.location.href="/trending";
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         })
         .fail(function(response) {
             alert("입력 정보를 확인해주세요.")
         });
     });
 
-<<<<<<< HEAD
-    $("#signup-button").click(function() {
-        var account = $("#signup-account").val();
-        var password = $("#signup-password").val();
-        var name = $("#signup-name").val();
-        console.log(account, password, name);
-=======
     //회원가입 버튼 클릭시
     $("#signup-form").submit(function(e) {
         var account = $("#signup-account").val();
         var password = $("#signup-password").val();
         var name = $("#signup-name").val();
 
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         $.ajax({
             method: "POST",
             url: "/user/signup",
@@ -105,19 +71,13 @@ $(function(){
         })
         .done(function(response) {
             alert("계정 생성 성공");
-<<<<<<< HEAD
-            window.location.href="/";
-=======
             window.location.href="/trending";
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
         })
         .fail(function(response) {
             console.log(response);
             alert("계정 생성 실패");
         });
     });
-<<<<<<< HEAD
-=======
 
 
     // 프로필 변경 버튼 클릭시
@@ -164,5 +124,4 @@ $(function(){
             }
         });
     });
->>>>>>> 8645c087f49a714d10b09f24e385c89a5b3d99d2
 });
