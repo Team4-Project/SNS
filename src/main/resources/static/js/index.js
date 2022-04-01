@@ -18,6 +18,16 @@ $(function() {
         $("#modalPostShareNum").html(postShareNum);
 
         $.get(url, function (response, status){
+
+            const comments = document.querySelector(
+                ".comments"
+            );
+            while (comments.hasChildNodes()) {	// 부모노드가 자식이 있는지 여부를 알아낸다
+                comments.removeChild(
+                    comments.firstChild
+                );
+            }
+
             for(var comment of response){
                 $(".comments").append(
                     "<div class=\"d-flex mb-2\">" +
