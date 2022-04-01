@@ -18,7 +18,7 @@ public class IndexPageController {
     private final UserService userService;
     private final PostService postService;
 
-    @RequestMapping(value = {"/", "/index.html"})
+    @RequestMapping(value = "/")
     public String getIndexPage(Model model) {
         List<User> recommendedUsers = userService.getSevenRecommendationAboutUser();
         List<Post> postList = postService.getPostList();
@@ -26,5 +26,10 @@ public class IndexPageController {
         model.addAttribute("recommendedUsers", recommendedUsers);
         model.addAttribute("postList", postList);
         return "index";
+    }
+
+    @RequestMapping(value = "/sign-in-up")
+    public String getSignInAndSignUpPage(){
+        return "sign-in-up";
     }
 }
