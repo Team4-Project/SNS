@@ -17,8 +17,8 @@
     </select>
 
     <insert id="createUser">
-        INSERT INTO user (account, password, name)
-        VALUES (#{user.account}, #{user.password}, #{user.name})
+        INSERT INTO user (account, password, name, nickname)
+        VALUES (#{user.account}, #{user.password}, #{user.name}, #{user.nickname})
     </insert>
 
     <select id="getUserByAccountAndPassword" resultType="com.team4.sns.vo.User">
