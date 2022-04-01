@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class S3Util {
 
-    private final static String BUCKET_NAME = "codepresso-team4";
+    private static final String BUCKET_NAME = "codepresso-team4";
     private final S3Config s3Config;
 
     public List<String> uploadObject(List<MultipartFile> images) throws IOException {
@@ -30,7 +30,7 @@ public class S3Util {
 
         S3Client s3Client = s3Config.getS3Client();
 
-        for(MultipartFile image : images){
+        for(MultipartFile image : images) {
             byte[] byteArr = image.getBytes();
 
             long time = System.currentTimeMillis();
