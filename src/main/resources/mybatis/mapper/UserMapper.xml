@@ -29,7 +29,12 @@
 
     <update id="editUser">
         UPDATE user
-        SET account = #{user.account}, password = #{user.password}, name = #{user.name}
+        SET nickname = #{user.nickname},
+            profession = #{user.profession},
+            gender = #{user.gender},
+            content = #{user.content},
+            image_url = #{user.imageUrl},
+            is_auth = #{user.isAuth}
         WHERE id = #{user.id} AND is_deleted = 0;
     </update>
 
@@ -43,6 +48,18 @@
         SELECT id
         FROM user
         WHERE id = #{id}
+    </select>
+
+    <select id="getSevenRecommendationAboutUser" resultType="com.team4.sns.vo.User">
+        SELECT id, name, profession, image_url as imageUrl
+        FROM user
+        LIMIT 7;
+    </select>
+
+    <select id="getUserByKeyword" resultType="com.team4.sns.vo.User">
+        SELECT id, name, profession, image_url as imageUrl
+        FROM user
+        WHERE name like concat('%', #{keyword}, '%');
     </select>
 
 </mapper>

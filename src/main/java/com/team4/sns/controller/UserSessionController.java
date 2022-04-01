@@ -23,6 +23,7 @@ public class UserSessionController {
 
     @DeleteMapping("/user/session")
     public ResponseEntity deleteSession(@RequestParam Integer id) {
+        System.out.println(id);
         userSessionService.deleteUserSession(id);
         return ResponseEntity.ok().build();
     }

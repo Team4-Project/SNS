@@ -3,6 +3,76 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team4.sns.mapper.PostMapper">
+    
+    <resultMap id="postResultMap" type="com.team4.sns.vo.Post">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="user_id" property="user.id"/>
+        <result column="user_image_url" property="user.imageUrl"/>
+        <result column="user_name" property="user.name"/>
+        <result column="user_nickname" property="user.nickname"/>
+        <collection property="postImageList" column="id" select="selectImageList"/>
+        <collection property="likeNum" column="id" select="countLikeNumByPostId"/>
+        <collection property="commentNum" column="id" select="countCommentNumByPostId"/>
+        <collection property="shareNum" column="id" select="countShareNumByPostId"/>
+    </resultMap>
+
+    <select id="getPostList" resultMap="postResultMap">
+        select
+            p.id,
+            p.content,
+            p.created_at,
+            u.id as user_id,
+            u.image_url as user_image_url,
+            u.name as user_name,
+            u.nickname as user_nickname
+        from user u
+                 inner join post p
+                            on u.id = p.user_id
+        where u.is_deleted = 0 and p.is_deleted=0;
+    </select>
+
+    <select id="getPostListByKeyword" resultMap="postResultMap">
+        select
+            p.id,
+            p.content,
+            p.created_at,
+            u.id as user_id,
+            u.image_url as user_image_url,
+            u.name as user_name,
+            u.nickname as user_nickname
+        from user u
+                 inner join post p
+                            on u.id = p.user_id
+        where p.content like concat('%', #{keyword}, '%')
+            and u.is_deleted = 0
+            and p.is_deleted=0;
+    </select>
+
+    <select id="selectImageList" resultType="java.lang.String">
+        SELECT post_image_url
+        FROM post_image
+        WHERE post_id=#{id} AND is_deleted=0;
+    </select>
+
+    <select id="countLikeNumByPostId" resultType="java.lang.Integer">
+        select count(*)
+        from post_like
+        where post_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="countCommentNumByPostId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM comment
+        Where post_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="countShareNumByPostId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM post_share
+        Where post_id=#{id} and is_deleted=0;
+    </select>
 
     <insert id="writePost" parameterType="com.team4.sns.vo.Post">
         INSERT INTO post(user_id, content)

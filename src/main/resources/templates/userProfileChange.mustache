@@ -40,7 +40,7 @@
                    <div class="main-content">
                       <div class="mb-5">
                          <img src="/img/logo.png" class="img-fluid logo" alt="brand-logo">
-                         <h1 class="fw-bold text-black mb-1">Sign Up</h1>
+                         <h1 class="fw-bold text-black mb-1">Change Profile</h1>
                          <p class="lead fw-normal text-muted mb-0">Welcome to Vogle</p>
                       </div>
                       <!-- Feeds -->
@@ -49,24 +49,61 @@
                          <div class="bg-white mt-5 p-4 feed-item rounded-4 shadow-sm faq-page">
                             <div class="row justify-content-center">
                                <div class="col-lg-12">
-                                  <form class="form-floating-space" id="signup-form" data-sb-form-api-token="API_TOKEN" onsubmit="return false" method="post">
+                                  <form class="form-floating-space" id="profile-change-form" data-sb-form-api-token="API_TOKEN" onsubmit="return false" method="post" enctype="multipart/form-data">
                                      <!-- Email input-->
                                      <div class="form-floating mb-3">
-                                        <input class="form-control rounded-5" id="signup-account" type="text" placeholder="Enter account"/>
-                                        <label for="signup-account">Account</label>
+                                        <input class="form-control rounded-5" id="profile-account" type="text" placeholder="Enter account" readonly=true />
+                                        <label for="profile-account">Account</label>
                                      </div>
                                     <!-- Password input-->
                                       <div class="form-floating mb-3">
-                                        <input class="form-control rounded-5" id="signup-password" type="password" placeholder="Enter password"/>
-                                        <label for="signup-password">Password</label>
+                                        <input class="form-control rounded-5" id="profile-password" type="password" placeholder="Enter password" readonly=true />
+                                        <label for="profile-password">Password</label>
                                       </div>
                                      <!-- Name input-->
                                      <div class="form-floating mb-3">
-                                        <input class="form-control rounded-5" id="signup-name" type="text" placeholder="Enter name"/>
-                                        <label for="signup-name">Name</label>
+                                        <input class="form-control rounded-5" id="profile-name" type="text" placeholder="Enter name" readonly=true />
+                                        <label for="profile-name">Name</label>
                                      </div>
+                                     <!-- Nick Name-->
+                                      <div class="form-floating mb-3">
+                                          <input class="form-control rounded-5" id="profile-nickname" type="text" placeholder="Enter name"/>
+                                          <label for="profile-nickname">Nickname</label>
+                                      </div>
+<!--                                      Profession-->
+                                      <div class="form-floating mb-3">
+                                          <input class="form-control rounded-5" id="profile-profession" type="text" placeholder="Enter name"/>
+                                          <label for="profile-profession">Profession</label>
+                                      </div>
+<!--                                      gender-->
+                                      <div class="form-floating mb-3">
+                                          <div>Gender</div>
+                                          <input type="radio" name="gender" value="1" checked="checked">남
+                                          <input type="radio" name="gender" value="0">여
+                                      </div>
+<!--                                      introduction-->
+                                      <div class="form-floating mb-3">
+                                          <textarea class="form-control rounded-5" id="profile-content" type="text" placeholder="Enter name"> </textarea>
+                                          <label for="profile-content">Introduction</label>
+                                      </div>
+<!--                                      birthday-->
+<!--                                      <div class="form-floating mb-3">-->
+<!--                                          <input class="form-control rounded-5" id="profile-birthday" type="text" placeholder="Enter name"/>-->
+<!--                                          <label for="profile-birthday">birthday</label>-->
+<!--                                      </div>-->
+
+<!--                                      image-->
+                                      <div class="form-floating mb-3">
+                                          <input id="profile-image" multiple type="file" id="chooseFile" name="chooseFile" accept="image/*">
+                                      </div>
+<!--                                      auth-->
+                                      <div class="form-floating mb-3">
+                                          <div>Authentification</div>
+                                          <input type="radio" name="auth" value="1" checked="checked">Yes
+                                          <input type="radio" name="auth" value="0">No
+                                      </div>
                                      <!-- Submit Button-->
-                                     <div class="d-grid"><button class="btn btn-primary w-100 rounded-5 text-decoration-none py-3 fw-bold text-uppercase m-0" id="signup-button" type="submit">Sign Up</button></div>
+                                     <div class="d-grid"><button class="btn btn-primary w-100 rounded-5 text-decoration-none py-3 fw-bold text-uppercase m-0" id="profile-change-button" type="submit">Change profile</button></div>
                                   </form>
                                </div>
                             </div>
