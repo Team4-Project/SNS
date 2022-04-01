@@ -66,13 +66,33 @@ $(function() {
         const children = $(this).children();
         console.log(children);
 
-        console.log(children[0].getAttribute("src"));
-        console.log(children[1].getAttribute("src"));
-        console.log(children[2].getAttribute("src"));
+        const images = document.querySelector(
+            "#imageSlider"
+        );
+        while (images.hasChildNodes()) {
+            images.removeChild(
+                images.firstChild
+            );
+        }
 
-        $("#image1").attr("src", children[0].getAttribute("src"))
-        $("#image2").attr("src", children[1].getAttribute("src"))
-        $("#image3").attr("src", children[2].getAttribute("src"))
+        for(var i=0; i<children.length; i++){
+
+            if(i==0){
+                $("#imageSlider").append(
+                    "<div class=\"carousel-item active\">" +
+                    "<img src=\""+ children[i].getAttribute("src") +"\" class=\"d-block w-100\" alt=\"...\">" +
+                    "</div>"
+                )
+            }
+            else {
+                $("#imageSlider").append(
+                    "<div class=\"carousel-item\">" +
+                    "<img src=\""+ children[i].getAttribute("src") +"\" class=\"d-block w-100\" alt=\"...\">" +
+                    "</div>"
+                )
+            }
+
+        }
     })
 
     $(document).on("click", "#postUploadButton", function (){
