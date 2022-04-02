@@ -6,6 +6,10 @@ $(function() {
         $("#profile-menu").hide();
         $("#logout-menu").hide();
     }
+    else{
+        $("#signup-menu").hide();
+        $("#login-menu").hide();
+    }
 
     $(document).on("click", "#commentButton", function (){
 
@@ -35,23 +39,34 @@ $(function() {
                 );
             }
 
-            for(var comment of response){
-                $(".comments").append(
-                    "<div class=\"d-flex mb-2\">" +
-                    "<img id=\"commentUserProfile\" src=\"" + comment.user.imageUrl + "\" class=\"img-fluid rounded-circle\" alt=\"profile-img\">" +
-                    "<div class=\"ms-2 small\">" +
-                    "<div class=\"bg-light px-3 py-2 rounded-4 mb-1 chat-text\">" +
-                    "<p id=\"commentUserName\" class=\"fw-500 mb-0\">" + comment.user.name + "</p>" +
-                    "<span id=\"commentContent\" class=\"text-muted\">" + comment.content + "</span>" +
-                    "</div>" +
-                    "<div class=\"d-flex align-items-center ms-2\">" +
-                    "<a href=\"#\" class=\"small text-muted text-decoration-none\">Like</a>" +
-                    "<span class=\"fs-3 text-muted material-icons mx-1\">circle</span>" +
-                    "<a href=\"#\" class=\"small text-muted text-decoration-none\">Reply</a>" +
-                    "<span class=\"fs-3 text-muted material-icons mx-1\">circle</span>" +
-                    "<span id=\"commentWroteAt\" class=\"small text-muted\">" + comment.wroteAt + "</span>" +
-                    "</div>" + "</div>" + "</div>"
-                )
+            console.log(response)
+
+            if(response.length == 0){
+                console.log("댓글 0개")
+                $(".comments").append("<input type=\"hidden\" id=\"commentPostId\" value=\"" + postId + "\">")
+            }
+            else {
+                console.log("댓글 있음")
+                for(var comment of response){
+
+                    $(".comments").append(
+                        "<input type=\"hidden\" id=\"commentPostId\" value=\"" + postId + "\">" +
+                        "<div class=\"d-flex mb-2\">" +
+                        "<img id=\"commentUserProfile\" src=\"" + comment.user.imageUrl + "\" class=\"img-fluid rounded-circle\" alt=\"profile-img\">" +
+                        "<div class=\"ms-2 small\">" +
+                        "<div class=\"bg-light px-3 py-2 rounded-4 mb-1 chat-text\">" +
+                        "<p id=\"commentUserName\" class=\"fw-500 mb-0\">" + comment.user.name + "</p>" +
+                        "<span id=\"commentContent\" class=\"text-muted\">" + comment.content + "</span>" +
+                        "</div>" +
+                        "<div class=\"d-flex align-items-center ms-2\">" +
+                        "<a href=\"#\" class=\"small text-muted text-decoration-none\">Like</a>" +
+                        "<span class=\"fs-3 text-muted material-icons mx-1\">circle</span>" +
+                        "<a href=\"#\" class=\"small text-muted text-decoration-none\">Reply</a>" +
+                        "<span class=\"fs-3 text-muted material-icons mx-1\">circle</span>" +
+                        "<span id=\"commentWroteAt\" class=\"small text-muted\">" + comment.wroteAt + "</span>" +
+                        "</div>" + "</div>" + "</div>"
+                    )
+                }
             }
         });
 
@@ -134,4 +149,39 @@ $(function() {
         }
     })
 
+    $(document).on("click", "#commentUploadButton", function (){
+
+        if(!session_id) {
+            alert('로그인 후 이용해 주세요')
+            window.location.href="/sign-in-up";
+        }
+
+        else {
+            var postId = $(this).parent().parent().parent().parent().children().children("#commentPostId").val()
+            var commentContent = $(this).parent().children("#commentContent").val()
+            console.log(postId);
+            console.log(commentContent);
+
+            $.ajax({
+                type: "POST",
+                url: "/comment",
+                data : JSON.stringify({
+                    "postId" : postId,
+                    "content" : commentContent
+                }),
+                contentType: "application/json",
+
+                beforeSend : function() {
+                    console.log("보낸다~")
+                },
+                success: function (data) {
+                    console.log("성공함 db 봐봐라");
+                    window.location.href = "/"
+                },
+                error: function (e) {
+                    console.log("ERROR : ", e);
+                }
+            })
+        }
+    })
 });

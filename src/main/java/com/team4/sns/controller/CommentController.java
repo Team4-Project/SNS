@@ -2,7 +2,9 @@ package com.team4.sns.controller;
 
 import com.team4.sns.controller.dto.CommentRequestDto;
 import com.team4.sns.service.CommentService;
+import com.team4.sns.service.UserSessionService;
 import com.team4.sns.vo.Comment;
+import com.team4.sns.vo.UserSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService commentService;
+    private final UserSessionService userSessionService;
+
 
     @GetMapping(value = "/comment/{post-id}")
     public ResponseEntity<List<Comment>> getCommentList(@PathVariable("post-id") Long postId){
@@ -23,9 +27,10 @@ public class CommentController {
     }
 
     @PostMapping(value = "/comment")
-    public void writeComment(@RequestBody @Validated CommentRequestDto commentRequestDto){
-        //세션 미 구현으로 인한 userId=1
-        commentRequestDto.setUserId(1L);
+    public void writeComment(@CookieValue(value = "id", required = false) Integer userId,
+                             @RequestBody @Validated CommentRequestDto commentRequestDto){
+        UserSession userSession = userSessionService.getUserSessionById(userId);
+        commentRequestDto.setUserId(Integer.toUnsignedLong(userSession.getUserId()));
         commentService.writeComment(commentRequestDto.toComment());
     }
 
