@@ -184,4 +184,22 @@ $(function() {
             })
         }
     })
+
+    //로그아웃 시 유저 세션 삭제
+    $(document).on("click","#logout-menu",function() {
+        var session_id = $.cookie('id');
+        alert("로그아웃 합니다");
+        $.ajax({
+            method: "DELETE",
+            url: "/user/session",
+            data: {
+                "id": session_id,
+            }
+        })
+            .done(function(response) {
+                document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.href = "/trending";
+            });
+    });
+
 });
