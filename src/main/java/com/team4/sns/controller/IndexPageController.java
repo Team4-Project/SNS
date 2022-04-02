@@ -21,7 +21,7 @@ public class IndexPageController {
     @RequestMapping(value = "/")
     public String getIndexPage(Model model) {
         List<User> recommendedUsers = userService.getSevenRecommendationAboutUser();
-        List<Post> postList = postService.getPostList();
+        List<Post> postList = postService.getPostList(1, 13);
 
         model.addAttribute("recommendedUsers", recommendedUsers);
         model.addAttribute("postList", postList);

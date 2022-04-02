@@ -24,8 +24,8 @@ public class PostController {
     private final UserSessionService userSessionService;
 
     @GetMapping(value = "/post")
-    public ResponseEntity<List<Post>> getPostList(){
-        return new ResponseEntity<>(postService.getPostList(), HttpStatus.OK);
+    public ResponseEntity<List<Post>> getPostList(@RequestParam(name = "page") Integer page){
+        return new ResponseEntity<>(postService.getPostList(page, 13), HttpStatus.OK);
     }
 
     @PostMapping(value = "/post")

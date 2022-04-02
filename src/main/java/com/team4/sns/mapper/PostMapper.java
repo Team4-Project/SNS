@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface PostMapper {
 
-    List<Post> getPostList();
+    List<Post> getPostList(@Param("limit") Integer limit, @Param("offset") Integer offset);
     void writePost(@Param("post") Post post);
     void deletePost(@Param("postId") Long postId);
     void modifyPost(@Param("postId") Long postId,
