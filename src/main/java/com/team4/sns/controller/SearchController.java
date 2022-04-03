@@ -1,6 +1,7 @@
 package com.team4.sns.controller;
 
 import com.team4.sns.service.PostService;
+import com.team4.sns.service.UserService;
 import com.team4.sns.vo.Post;
 import com.team4.sns.vo.User;
 import lombok.AllArgsConstructor;
@@ -16,12 +17,15 @@ import java.util.List;
 public class SearchController {
 
 	private PostService postService;
+	private UserService userService;
 
 	@GetMapping("/search/{keyword}")
 	public String searchByKeyword(Model model, @PathVariable String keyword) {
 		List<Post> postList = postService.getPostByKeyword(keyword);
+		List<User> userList = userService.getUserByKeyword(keyword);
 
 		model.addAttribute("posts",postList);
+		model.addAttribute("users", userList);
 		return "search";
 	}
 }
