@@ -75,6 +75,9 @@ $(function() {
     $(document).on("click", "#postModalCancelButton", function (){
         $(this).parent().parent().children().children().children().children("#postRegisterArea").val("");
         $(this).parent().parent().children().children().children().children("#postImageRegister").val("");
+        $(this).parent().parent().children().children().children("#tag1").val("");
+        $(this).parent().parent().children().children().children("#tag2").val("");
+        $(this).parent().parent().children().children().children("#tag3").val("");
     });
 
     $(document).on("click", "#postImages", function (){
@@ -139,8 +142,19 @@ $(function() {
                 beforeSend : function() {
                     console.log("보낸다~")
                 },
-                success: function (data) {
+                success: function (response) {
                     console.log("성공함 db 봐봐라");
+                    $.ajax({
+                        type: "POST",
+                        url: "/tag",
+                        data: {
+                            "postId" : response,
+                            "contentList" : $("#tag1").val() + $("#tag2").val() + $("#tag3").val()
+                        }
+                    })
+                        .done(function(){
+                            window.location.href="/"
+                        })
                 },
                 error: function (e) {
                     console.log("ERROR : ", e);

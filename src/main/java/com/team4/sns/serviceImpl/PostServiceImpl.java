@@ -29,13 +29,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
-    public void writePost(Post post, List<MultipartFile> images) throws IOException {
+    public Long writePost(Post post, List<MultipartFile> images) throws IOException {
 
         postMapper.writePost(post);
         Long registeredPostId = post.getId();
 
         if(images != null)
             imageService.uploadImage(registeredPostId, images);
+
+        return post.getId();
     }
 
     @Override

@@ -29,7 +29,7 @@ public class PostController {
     }
 
     @PostMapping(value = "/post")
-    public void writePost(@Validated PostRequestDto postRequestDto,
+    public ResponseEntity<Long> writePost(@Validated PostRequestDto postRequestDto,
                           @RequestPart(name = "images", required = false) List<MultipartFile> images,
                           @CookieValue("id")Integer sessionId) throws IOException {
 
@@ -41,7 +41,7 @@ public class PostController {
         Long logInUserId = Integer.toUnsignedLong(userSession.getUserId());
         postRequestDto.setUserId(logInUserId);
 
-        postService.writePost(postRequestDto.toPost(), images);
+        return new ResponseEntity<Long>(postService.writePost(postRequestDto.toPost(), images), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value ="/post/{post-id}")
