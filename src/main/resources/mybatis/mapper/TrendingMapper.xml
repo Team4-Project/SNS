@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team4.sns.mapper.TrendingMapper">
+
+    <resultMap id="postResultMap" type="com.team4.sns.vo.Post">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="user_id" property="user.id"/>
+        <result column="user_image_url" property="user.imageUrl"/>
+        <result column="user_name" property="user.name"/>
+        <result column="user_nickname" property="user.nickname"/>
+        <collection property="postImageList" column="id" select="selectImageList"/>
+        <collection property="likeNum" column="id" select="countLikeNumByPostId"/>
+        <collection property="commentNum" column="id" select="countCommentNumByPostId"/>
+        <collection property="shareNum" column="id" select="countShareNumByPostId"/>
+    </resultMap>
+
+    <select id="getPostList" resultMap="postResultMap">
+        select
+        p.id,
+        p.content,
+        p.created_at,
+        u.id as user_id,
+        u.image_url as user_image_url,
+        u.name as user_name,
+        u.nickname as user_nickname
+        from user u
+        inner join post p
+        on u.id = p.user_id
+        where u.is_deleted = 0 and p.is_deleted=0;
+    </select>
+
+    <select id="getPostListByKeyword" resultMap="postResultMap">
+        select
+        p.id,
+        p.content,
+        p.created_at,
+        u.id as user_id,
+        u.image_url as user_image_url,
+        u.name as user_name,
+        u.nickname as user_nickname
+        from user u
+        inner join post p
+        on u.id = p.user_id
+        where p.content like concat('%', #{keyword}, '%')
+        and u.is_deleted = 0
+        and p.is_deleted=0;
+    </select>
+
+    <select id="selectImageList" resultType="java.lang.String">
+        SELECT post_image_url
+        FROM post_image
+        WHERE post_id=#{id} AND is_deleted=0;
+    </select>
+
+    <select id="countLikeNumByPostId" resultType="java.lang.Integer">
+        select count(*)
+        from post_like
+        where post_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="countCommentNumByPostId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM comment
+        Where post_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="countShareNumByPostId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM post_share
+        Where post_id=#{id} and is_deleted=0;
+    </select>
+
+
+    <select id="getUserByAccount" resultType="com.team4.sns.vo.User">
+        SELECT *
+        FROM user
+        WHERE account = #{account} AND is_deleted = 0
+    </select>
+
+    <select id="getTrendingUserList" resultType="com.team4.sns.vo.User">
+        SELECT user.id, user.account, user.name, user.nickname, user.profession, user.image_url AS imageUrl, user.is_auth AS isAuth
+        FROM user
+        JOIN (
+            SELECT followed_user_id as user_id, count(*) AS num
+            FROM follow
+            WHERE created_at BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND NOW() AND is_deleted = 0
+            GROUP BY followed_user_id
+            ORDER BY num DESC
+            LIMIT 5
+        ) AS follow ON user.id = follow.user_id
+        WHERE user.is_deleted = 0
+    </select>
+
+    <select id="getTrendingPostList" resultMap="postResultMap">
+        SELECT
+            p.id,
+            p.content,
+            p.created_at,
+            u.id as user_id,
+            u.image_url as user_image_url,
+            u.name as user_name,
+            u.nickname as user_nickname
+        FROM user AS u
+        JOIN post AS p ON u.id = p.user_id
+        JOIN (
+            SELECT post_id, COUNT(*) AS num
+            FROM post_like
+            WHERE is_deleted = 0
+            GROUP BY post_id
+        ) AS pl ON p.id = pl.post_id
+        WHERE u.is_deleted = 0 AND p.is_deleted=0 AND p.updated_at BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND NOW()
+        ORDER BY pl.num DESC
+        LIMIT 5
+    </select>
+
+    <select id="getTrendingTagList" resultType="com.team4.sns.vo.Tag">
+        SELECT content, COUNT(*) AS num
+        FROM tag
+        WHERE is_deleted = 0 AND updated_at BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND NOW()
+        GROUP BY content
+        ORDER BY num DESC
+        LIMIT 5
+    </select>
+
+</mapper>
+
