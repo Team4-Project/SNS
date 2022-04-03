@@ -216,4 +216,27 @@ $(function() {
             });
     });
 
+
+    $(document).on("click", "#likeButton", function (){
+
+        if(!session_id) {
+            alert('로그인 후 이용해 주세요')
+            window.location.href="/sign-in-up";
+        }
+
+        var postId = $(this).parent().parent().parent().parent().parent().children("#postId").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/like",
+            data: JSON.stringify({
+              "postId" : postId
+            }),
+            contentType: "application/json"
+        })
+            .done(function(response) {
+                window.location.href = "/";
+            })
+    })
+
 });

@@ -15,4 +15,10 @@
             AND post_id = #{postId}
     </update>
 
+    <select id="isValidateHeart" resultType="java.lang.Integer">
+        SELECT post_id
+        FROM POST_LIKE
+        WHERE user_id = #{userId} AND post_id = #{postId} AND is_deleted=0;
+    </select>
+
 </mapper>
