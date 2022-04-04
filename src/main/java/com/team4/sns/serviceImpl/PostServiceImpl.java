@@ -23,8 +23,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
-    public List<Post> getPostList(Integer page, Integer size) {
-        return postMapper.getPostList(size, (page-1)*size);
+    public List<Post> getPostList(Integer userId, Integer page, Integer size) {
+        return postMapper.getPostList(userId, size, (page-1)*size);
     }
 
     @Override

@@ -108,8 +108,8 @@ public class UserService {
         Integer id = userMapper.getUser(user);
     }
 
-    public List<User> getSevenRecommendationAboutUser(){
-        return userMapper.getSevenRecommendationAboutUser();
+    public List<User> getSevenRecommendationAboutUser(Integer userId){
+        return userMapper.getSevenRecommendationAboutUser(userId);
     }
 
     public List<User> getUserByKeyword(String keyword){

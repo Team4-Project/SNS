@@ -51,9 +51,27 @@
     </select>
 
     <select id="getSevenRecommendationAboutUser" resultType="com.team4.sns.vo.User">
-        SELECT id, name, profession, image_url as imageUrl
-        FROM user
-        LIMIT 7;
+        <choose>
+            <when test="userId == null">
+                SELECT id, name, profession, image_url as imageUrl
+                FROM user
+                ORDER BY rand()
+                LIMIT 7;
+            </when>
+            <otherwise>
+                SELECT id, name, profession, image_url as imageUrl
+                FROM user
+                WHERE id not in (
+                    SELECT followed_user_id
+                    FROM follow
+                    WHERE user_id = #{userId}
+                    )
+                AND id != #{userId}
+                ORDER BY rand()
+                LIMIT 7;
+            </otherwise>
+        </choose>
+
     </select>
 
     <select id="getUserByKeyword" resultType="com.team4.sns.vo.User">

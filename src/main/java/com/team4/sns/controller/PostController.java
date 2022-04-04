@@ -24,8 +24,16 @@ public class PostController {
     private final UserSessionService userSessionService;
 
     @GetMapping(value = "/post")
-    public ResponseEntity<List<Post>> getPostList(@RequestParam(name = "page") Integer page){
-        return new ResponseEntity<>(postService.getPostList(page, 13), HttpStatus.OK);
+    public ResponseEntity<List<Post>> getPostList(@CookieValue(name = "id", required = false) Integer sessionId,
+                                                  @RequestParam(name = "page") Integer page){
+
+        UserSession userSession = userSessionService.getUserSessionById(sessionId);
+        Integer userId = null;
+
+        if(userSession != null)
+            userId = userSession.getUserId();
+
+        return new ResponseEntity<>(postService.getPostList(userId, page, 13), HttpStatus.OK);
     }
 
     @PostMapping(value = "/post")

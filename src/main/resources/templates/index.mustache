@@ -731,11 +731,9 @@
         let result="<div id=\"postImages\" class=\"text-decoration-none\" data-bs-toggle=\"modal\" data-bs-target=\"#imageModal\">";
         for(var i=0; i<imageList.length; i++){
             var tmp = "<img id=\"image\" src=\"" + imageList[i] + "\" class=\"img-fluid rounded mb-3\" alt=\"post-img\">"
-            console.log("tmp", tmp)
             result += tmp
         }
-        result += "<div>";
-        console.log("result : ", result)
+        result += "</div>";
         return result
     }
     let isRequestPost = false;
