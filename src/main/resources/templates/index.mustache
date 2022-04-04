@@ -44,9 +44,6 @@
                         <li class="nav-item" role="presentation">
                             <button class="p-3 nav-link text-muted" id="pills-people-tab" data-bs-toggle="pill" data-bs-target="#pills-people" type="button" role="tab" aria-controls="pills-people" aria-selected="false">People</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="p-3 nav-link text-muted" id="pills-trending-tab" data-bs-toggle="pill" data-bs-target="#pills-trending" type="button" role="tab" aria-controls="pills-trending" aria-selected="false">Trending</button>
-                        </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-feed" role="tabpanel" aria-labelledby="pills-feed-tab">
@@ -154,185 +151,24 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
-                            <h6 class="mb-3 fw-bold text-body">People you can follow</h6>
-                            <div class="bg-white rounded-4 overflow-hidden mb-4 shadow-sm">
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate5.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">Webartinfo <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div class="text-muted fw-light">
-                                            <p class="mb-1 small">@abcdsec</p>
-                                            <span class="text-muted d-flex align-items-center small"><span class="material-icons me-1 small">open_in_new</span>Promoted</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate4.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">John Smith <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="fw-light text-muted mb-1 small">@johnsmith</p>
-                                            <span class="d-flex align-items-center small">Designer</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate3.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">Konex <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="text-muted fw-light mb-1 small">@Konex</p>
-                                            <span class="d-flex align-items-center small">Artist/Author/Motivational Speaker</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                            </div>
                             <h6 class="mb-3 fw-bold text-body">Popular</h6>
                             <div class="bg-white rounded-4 overflow-hidden mb-4 shadow-sm">
                                 <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate2.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
+                                {{#popularUsers}}
+                                <a href="profile/{{id}}" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
+                                    <img src="{{imageUrl}}" class="img-fluid rounded-circle me-3" alt="profile-img">
                                     <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">Anushuka Shetty <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
+                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">{{name}} <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
                                         <div class="text-muted fw-light">
-                                            <p class="mb-1 small">@anushuka</p>
-                                            <span class="text-muted d-flex align-items-center small"><span class="material-icons me-1 small">open_in_new</span>Promoted</span>
+                                            <p class="mb-1 small">@{{nickname}}</p>
+                                            <span class="text-muted d-flex align-items-center small"><span class="material-icons me-1 small">open_in_new</span>{{profession}}</span>
                                         </div>
                                     </div>
                                     <div class="ms-auto">
                                         <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
                                     </div>
                                 </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate4.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">John Smith <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="fw-light text-muted mb-1 small">@johnsmith</p>
-                                            <span class="d-flex align-items-center small">Actress</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate6.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">William Smith <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="text-muted fw-light mb-1 small">@williamsmith</p>
-                                            <span class="d-flex align-items-center small">Motivational Speaker</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <h6 class="mb-3 fw-bold text-body">News Papers & Channels</h6>
-                            <div class="bg-white rounded-4 overflow-hidden mb-4 shadow-sm">
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate5.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">Webartinfo <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div class="text-muted fw-light">
-                                            <p class="mb-1 small">@abcdsec</p>
-                                            <span class="text-muted d-flex align-items-center small"><span class="material-icons me-1 small">open_in_new</span>Promoted</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate4.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">John Smith <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="fw-light text-muted mb-1 small">@johnsmith</p>
-                                            <span class="d-flex align-items-center small">Designer</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate3.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">Konex <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="text-muted fw-light mb-1 small">@Konex</p>
-                                            <span class="d-flex align-items-center small">Artist/Author/Motivational Speaker</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <h6 class="mb-3 fw-bold text-body">Politicians</h6>
-                            <div class="bg-white rounded-4 overflow-hidden mb-4 shadow-sm">
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate2.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">Anushuka Shetty <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div class="text-muted fw-light">
-                                            <p class="mb-1 small">@anushuka</p>
-                                            <span class="text-muted d-flex align-items-center small"><span class="material-icons me-1 small">open_in_new</span>Promoted</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 border-bottom d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate4.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">John Smith <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="fw-light text-muted mb-1 small">@johnsmith</p>
-                                            <span class="d-flex align-items-center small">Actress</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
-                                <!-- Account Item -->
-                                <a href="profile.html" class="p-3 d-flex text-dark text-decoration-none account-item pf-item">
-                                    <img src="img/rmate6.jpg" class="img-fluid rounded-circle me-3" alt="profile-img">
-                                    <div>
-                                        <p class="fw-bold mb-0 pe-3 d-flex align-items-center">William Smith <span class="ms-2 material-icons bg-primary p-0 md-16 fw-bold text-white rounded-circle ov-icon">done</span></p>
-                                        <div>
-                                            <p class="text-muted fw-light mb-1 small">@williamsmith</p>
-                                            <span class="d-flex align-items-center small">Motivational Speaker</span>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="btn btn-outline-primary btn-sm px-3 rounded-pill">+ Follow</span>
-                                    </div>
-                                </a>
+                                {{/popularUsers}}
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-trending" role="tabpanel" aria-labelledby="pills-trending-tab">
@@ -366,13 +202,13 @@
                                 <a href="/" class="nav-link active"><span class="material-icons me-3">house</span> <span>Feed</span></a>
                             </li>
                             <li class="nav-item">
-                                <a href="profile.html" class="nav-link"><span class="material-icons me-3">account_circle</span> <span>Profile</span></a>
+                                <a href="profile" class="nav-link"><span class="material-icons me-3">account_circle</span> <span>Profile</span></a>
                             </li>
                             <li class="nav-item">
                                 <a href="/" class="nav-link"><span class="material-icons me-3">logout</span> <span>Logout</span></a>
                             </li>
                             <li class="nav-item">
-                                <a href="tags.html" class="nav-link"><span class="material-icons me-3">local_fire_department</span> <span>Trending</span></a>
+                                <a href="/trending" class="nav-link"><span class="material-icons me-3">local_fire_department</span> <span>Trending</span></a>
                             </li>
                         </ul>
                     </div>
@@ -393,14 +229,18 @@
                                 <a href="/" class="nav-link active"><span class="material-icons me-3">house</span> <span>Feed</span></a>
                             </li>
                             <li class="nav-item">
-                                <a href="profile.html" class="nav-link" id="profile-menu"><span class="material-icons me-3">account_circle</span> <span>Profile</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/" class="nav-link" id="logout-menu"><span class="material-icons me-3">logout</span> <span>Logout</span></a>
+                                <a href="profile" class="nav-link" id="profile-menu"><span class="material-icons me-3">account_circle</span> <span>Profile</span></a>
                             </li>
                             <li class="nav-item">
                                 <a href="/trending" class="nav-link"><span class="material-icons me-3">local_fire_department</span> <span>Trending</span></a>
                             </li>
+                            <li class="nav-item" id="change-profile-menu">
+                                <a href="/user/profile" class="nav-link"><span class="material-icons me-3">face</span> <span>Change Profile</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/" class="nav-link" id="logout-menu"><span class="material-icons me-3">logout</span> <span>Logout</span></a>
+                            </li>
+
                         </ul>
                     </div>
                     <a href="/user/signup" id="signup-menu" class="btn btn-primary w-100 text-decoration-none rounded-4 py-3 fw-bold text-uppercase m-0">Sign Up +</a>

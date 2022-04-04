@@ -80,5 +80,35 @@
         WHERE name like concat('%', #{keyword}, '%');
     </select>
 
+    <select id="getNinePopularUser" resultType="com.team4.sns.vo.User">
+        <choose>
+            <when test="userId != null">
+                SELECT id, name, nickname, profession, image_url as imageUrl
+                FROM user
+                WHERE id not in (
+                SELECT followed_user_id
+                FROM follow
+                WHERE user_id=#{userId}
+                group by followed_user_id
+                )
+                AND id != #{userId}
+                ORDER BY rand()
+                LIMIT 9;
+            </when>
+            <otherwise>
+                SELECT id, name, nickname, profession, image_url as imageUrl
+                FROM user
+                WHERE id in (
+                SELECT followed_user_id
+                FROM follow
+                group by followed_user_id
+                )
+                ORDER BY rand()
+                LIMIT 9;
+            </otherwise>
+        </choose>
+
+    </select>
+
 </mapper>
 

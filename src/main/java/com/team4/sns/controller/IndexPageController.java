@@ -34,9 +34,11 @@ public class IndexPageController {
 
         List<User> recommendedUsers = userService.getSevenRecommendationAboutUser(userId);
         List<Post> postList = postService.getPostList(userId, 1, 13);
+        List<User> popularUsers = userService.getNinePopularUser(userId);
 
         model.addAttribute("recommendedUsers", recommendedUsers);
         model.addAttribute("postList", postList);
+        model.addAttribute("popularUsers", popularUsers);
         return "index";
     }
 

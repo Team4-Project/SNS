@@ -115,4 +115,8 @@ public class UserService {
     public List<User> getUserByKeyword(String keyword){
         return userMapper.getUserByKeyword(keyword);
     }
+
+    public List<User> getNinePopularUser(Integer userId){
+        return userMapper.getNinePopularUser(userId);
+    }
 }
