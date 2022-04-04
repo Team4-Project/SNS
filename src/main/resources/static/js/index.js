@@ -225,10 +225,10 @@ $(function() {
         }
 
         var postId = $(this).parent().parent().parent().parent().parent().children("#postId").val();
-
+        var keyword;
         $.ajax({
             method: "POST",
-            url: "/like",
+            url: "/like/",
             data: JSON.stringify({
               "postId" : postId
             }),
@@ -237,6 +237,29 @@ $(function() {
             .done(function(response) {
                 window.location.href = "/";
             })
+    })
+
+    $(document).on("click", "#followButton", function (){
+
+        if(!session_id) {
+            alert('로그인 후 이용해 주세요')
+            window.location.href="/sign-in-up";
+        }
+        else{
+            var followedUserId = $(this).parent().children("#userId").val()
+
+            $.ajax({
+                method: "POST",
+                url: "/follow",
+                data: JSON.stringify({
+                    "followedUserId" : followedUserId
+                }),
+                contentType: "application/json"
+            })
+                .done(function(response) {
+                    window.location.href = "/";
+                })
+        }
     })
 
 });

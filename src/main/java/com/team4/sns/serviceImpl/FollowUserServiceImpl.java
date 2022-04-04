@@ -23,4 +23,12 @@ public class FollowUserServiceImpl implements FollowUserService {
 	public void unfollowUser(FollowUser followUser) {
 		followUserMapper.unfollowUser(followUser);
 	}
+
+	@Override
+	public Boolean isValidateUserFollow(FollowUser followUser) {
+		if(followUserMapper.isValidateUserFollow(followUser) == null)
+			return true;
+
+		return false;
+	}
 }
