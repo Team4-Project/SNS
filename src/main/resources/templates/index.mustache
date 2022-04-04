@@ -726,6 +726,18 @@
 
 <!-- Pagenation -->
 <script type="text/javascript">
+
+    function insertImage(imageList){
+        let result="<div id=\"postImages\" class=\"text-decoration-none\" data-bs-toggle=\"modal\" data-bs-target=\"#imageModal\">";
+        for(var i=0; i<imageList.length; i++){
+            var tmp = "<img id=\"image\" src=\"" + imageList[i] + "\" class=\"img-fluid rounded mb-3\" alt=\"post-img\">"
+            console.log("tmp", tmp)
+            result += tmp
+        }
+        result += "<div>";
+        console.log("result : ", result)
+        return result
+    }
     let isRequestPost = false;
     window.addEventListener('scroll',() => {
         // $("#mainPost").height() : DOM의 길이
@@ -747,9 +759,7 @@
                 data: {"page": nextPage}
             })
             .done(function(response){
-                let postImageList;
                 for (var post of response) {
-                    postImageList = post.postImageList;
                     $(".pt-4").append(
                         "<div class=\"bg-white p-3 feed-item rounded-4 mb-3 shadow-sm\">" +
                         "<div class=\"d-flex\">" +
@@ -778,6 +788,7 @@
                         "</div>" +
                         "<div class=\"my-2\">" +
                         "<p class=\"text-dark\">" + post.content + "</p>" +
+                         insertImage(post.postImageList) +
                         "<div id=\"postImages\" href=\"#\" class=\"text-decoration-none\" data-bs-toggle=\"modal\" data-bs-target=\"#imageModal\">" +
                         "</div>" +
                         "<div class=\"d-flex align-items-center justify-content-between mb-2\">" +
@@ -803,12 +814,6 @@
                 }
             });
 
-            // for(var image of postImageList){
-            //     console.log(image)
-            //     $("#postImages").append(
-            //             "<img id=\"image\" src=\"" + image + "\" class=\"img-fluid rounded mb-3\" alt=\"post-img\">"
-            //     )
-            // }
             $("#page").attr("current-page", nextPage);
         }
     });
