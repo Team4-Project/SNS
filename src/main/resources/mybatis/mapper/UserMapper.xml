@@ -101,7 +101,7 @@
     </select>
 
     <select id="getUserByKeyword" resultType="com.team4.sns.vo.User">
-        SELECT id, name, profession, image_url as imageUrl
+        SELECT id, nickname, name, profession, image_url as imageUrl
         FROM user
         WHERE name like concat('%', #{keyword}, '%');
     </select>
