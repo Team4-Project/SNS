@@ -144,13 +144,25 @@ $(function() {
                     console.log("보낸다~")
                 },
                 success: function (response) {
-                    console.log("성공함 db 봐봐라");
+
+                    let tag_result;
+                    var tag1 = $("#tag1").val();
+                    var tag2 = $("#tag2").val();
+                    var tag3 = $("#tag3").val();
+
+                    if(tag1 != null)
+                        tag_result += '#' + tag1;
+                    if(tag2 != null)
+                        tag_result += '#' + tag2;
+                    if(tag3 != null)
+                        tag_result += '#' + tag3;
+
                     $.ajax({
                         type: "POST",
                         url: "/tag",
                         data: {
                             "postId" : response,
-                            "contentList" : $("#tag1").val() + $("#tag2").val() + $("#tag3").val()
+                            "contentList" : tag_result
                         }
                     })
                         .done(function(){

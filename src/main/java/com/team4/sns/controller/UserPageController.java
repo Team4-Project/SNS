@@ -28,6 +28,7 @@ public class UserPageController {
     public String getUserProfileChangePage(Model model,
                                            @CookieValue(value = "id", required = false) Integer sessionId) {
         User user = userService.getUserBySessionId(sessionId);
+        System.out.println(user.getAccount());
         model.addAttribute("account", user.getAccount());
         model.addAttribute("name", user.getName());
         return "userProfileChange";

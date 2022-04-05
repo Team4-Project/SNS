@@ -128,9 +128,10 @@ public class UserService {
         return userMapper.getNinePopularUser(userId);
     }
 
-    public User getUserInfo(Integer userId){
+    public User getUserInfo(Integer userId) {
         return userMapper.getUserById(userId);
-      
+    }
+
     public List<User> getTrendingUserList() {
         return userMapper.getTrendingUserList();
     }

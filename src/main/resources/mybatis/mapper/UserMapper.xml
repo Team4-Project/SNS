@@ -6,6 +6,7 @@
 
     <resultMap id="userProfileInfoMap" type="com.team4.sns.vo.User">
         <id column="id" property="id"/>
+        <result column="account" property="account"/>
         <result column="name" property="name"/>
         <result column="nickname" property="nickname"/>
         <result column="content" property="content"/>
@@ -34,7 +35,7 @@
     </select>
 
     <select id="getUserById" resultMap="userProfileInfoMap">
-        SELECT id, name, nickname, content,image_url, created_at
+        SELECT id, account, name, nickname, content,image_url, created_at
         FROM user
         WHERE id = #{id}
     </select>
@@ -56,7 +57,9 @@
             profession = #{user.profession},
             gender = #{user.gender},
             content = #{user.content},
-            image_url = #{user.imageUrl},
+            <if test="user.imageUrl != null">
+                image_url = #{user.imageUrl},
+            </if>
             is_auth = #{user.isAuth}
         WHERE id = #{user.id} AND is_deleted = 0;
     </update>
