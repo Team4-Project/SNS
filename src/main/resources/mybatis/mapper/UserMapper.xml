@@ -4,14 +4,37 @@
 
 <mapper namespace="com.team4.sns.mapper.UserMapper">
 
+    <resultMap id="userProfileInfoMap" type="com.team4.sns.vo.User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="nickname" property="nickname"/>
+        <result column="content" property="content"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="created_at" property="createdAt"/>
+        <collection property="followNum" column="id" select="countFollowNumByUserId"/>
+        <collection property="followingNum" column="id" select="countFollowingNumByUserId"/>
+    </resultMap>
+
     <select id="getUserByAccount" resultType="com.team4.sns.vo.User">
         SELECT *
         FROM user
         WHERE account = #{account} AND is_deleted = 0
     </select>
 
-    <select id="getUserById" resultType="com.team4.sns.vo.User">
-        SELECT *
+    <select id="countFollowNumByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from follow
+        where followed_user_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="countFollowingNumByUserId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM follow
+        WHERE user_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="getUserById" resultMap="userProfileInfoMap">
+        SELECT id, name, nickname, content,image_url, created_at
         FROM user
         WHERE id = #{id}
     </select>

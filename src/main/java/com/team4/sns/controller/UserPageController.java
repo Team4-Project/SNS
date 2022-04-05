@@ -5,12 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserPageController {
-
-    @RequestMapping("/profile")
-    public String getProfilePage(){
-        return "profile";
-    }
-
     @RequestMapping("/user/signup")
     public String getSignupPage() {
         return "signup";

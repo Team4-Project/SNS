@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -45,5 +46,13 @@ public class IndexPageController {
     @RequestMapping(value = "/sign-in-up")
     public String getSignInAndSignUpPage(){
         return "sign-in-up";
+    }
+
+    @RequestMapping("/profile/{user-id}")
+    public String getProfilePage(@PathVariable(name = "user-id") Integer userId,
+                                 Model model){
+        User user = userService.getUserInfo(userId);
+        model.addAttribute("user", user);
+        return "profile";
     }
 }

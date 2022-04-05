@@ -5,6 +5,7 @@ $(function() {
     if(!session_id) {
         $("#profile-menu").hide();
         $("#logout-menu").hide();
+        $("#user-profile-menu").hide();
     }
     else{
         $("#signup-menu").hide();
