@@ -24,9 +24,6 @@ public class TrendingPageController {
         List<User> popularUsers = trendingService.getTrendingUserList();
         List<Post> popularPosts = trendingService.getTrendingPostList();
         List<Tag> popularTags = trendingService.getTrendingTagList();
-        for (Post post : popularPosts) {
-            System.out.println(post);
-        }
         model.addAttribute("popularUsers", popularUsers);
         model.addAttribute("popularPosts", popularPosts);
         model.addAttribute("popularTags", popularTags);
