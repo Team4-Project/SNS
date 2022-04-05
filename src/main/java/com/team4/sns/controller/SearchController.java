@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class SearchController {
 	private PostService postService;
 	private UserService userService;
 
-	@GetMapping("/search/{keyword}")
-	public String searchByKeyword(Model model, @PathVariable String keyword) {
+	@GetMapping("/search")
+		public String searchByKeyword(Model model, @RequestParam String keyword) {
 		List<Post> postList = postService.getPostByKeyword(keyword);
 		List<User> userList = userService.getUserByKeyword(keyword);
 
