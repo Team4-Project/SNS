@@ -14,4 +14,5 @@ public interface PostService {
     List<Post> getPostByKeyword(String keyword);
     List<Post> getMyPost(Integer userId, Integer page, Integer size);
     List<Post> getMyLikePostList(Integer userId, Integer page, Integer size);
+    List<Post> getMyCommentPostList(Integer userId, Integer page, Integer size);
 }
