@@ -33,7 +33,7 @@
         where u.is_deleted = 0 and p.is_deleted=0;
     </select>
 
-    <select id="getPostListByKeyword" resultMap="postResultMap">
+    <select id="getPostByKeyword" resultMap="postResultMap">
         select
             p.id,
             p.content,
