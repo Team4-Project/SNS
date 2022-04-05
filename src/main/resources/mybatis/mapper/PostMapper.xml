@@ -112,5 +112,20 @@
         WHERE id=#{postId} and is_deleted=0;
     </update>
 
+    <select id="getMyPost" resultMap="postResultMap">
+        select
+            p.id,
+            p.content,
+            p.created_at,
+            u.id as user_id,
+            u.image_url as user_image_url,
+            u.name as user_name,
+            u.nickname as user_nickname
+        from user u
+                 inner join post p
+                            on u.id = p.user_id
+        where user_id=#{userId};
+    </select>
+
 </mapper>
 

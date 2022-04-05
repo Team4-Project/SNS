@@ -52,7 +52,9 @@ public class IndexPageController {
     public String getProfilePage(@PathVariable(name = "user-id") Integer userId,
                                  Model model){
         User user = userService.getUserInfo(userId);
+        List<Post> myPostList = postService.getMyPost(userId, 1 ,13);
         model.addAttribute("user", user);
+        model.addAttribute("myPostList", myPostList);
         return "profile";
     }
 }

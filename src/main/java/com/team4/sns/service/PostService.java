@@ -12,4 +12,5 @@ public interface PostService {
     void deletePost(Long postId);
     void modifyPost(Long postId, Post post, List<MultipartFile> images) throws IOException;
     List<Post> getPostByKeyword(String keyword);
+    List<Post> getMyPost(Integer userId, Integer page, Integer size);
 }

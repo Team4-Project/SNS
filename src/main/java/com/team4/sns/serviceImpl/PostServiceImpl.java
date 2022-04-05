@@ -62,4 +62,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getPostByKeyword(String keyword) {
         return postMapper.getPostByKeyword(keyword);
     }
+
+    @Override
+    public List<Post> getMyPost(Integer userId, Integer page, Integer size) {
+        return postMapper.getMyPost(userId, size, (page-1)*size);
+    }
 }
