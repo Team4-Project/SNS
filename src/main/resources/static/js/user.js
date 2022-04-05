@@ -49,6 +49,7 @@ $(function(){
             window.location.href="/trending";
         })
         .fail(function(response) {
+            console.log(response);
             alert("입력 정보를 확인해주세요.")
         });
     });

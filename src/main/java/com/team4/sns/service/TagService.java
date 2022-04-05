@@ -26,10 +26,9 @@ public class TagService {
     public void createTag(Integer postId, String contentList) {
         // contentList 에는 input 으로 들어온 모든 tag의 contents가 '#'을 기준으로 합쳐져있음
         String[] content = contentList.split("#");
-        for (int i=1; i<content.length; i++) {
+        for (int i = 0; i < content.length; i++) {
             Tag tag = new Tag(postId, content[i]);
-            tagMapper.createTag(tag);
-            Integer tagId = tag.getId();
+            Integer tagId = tagMapper.createTag(tag);
             tagPostService.createTagPost(postId, tagId);
         }
     }

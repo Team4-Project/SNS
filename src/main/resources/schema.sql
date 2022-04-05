@@ -1,68 +1,130 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS user_session;
-DROP TABLE IF EXISTS tag;
-DROP TABLE IF EXISTS tag_post;
-DROP TABLE IF EXISTS reply;
-DROP TABLE IF EXISTS reply_like;
-
-CREATE TABLE user (
-	id	        INTEGER         PRIMARY KEY AUTO_INCREMENT	NOT NULL,
-	account	    VARCHAR(255)	NOT NULL,
-	password	VARCHAR(255)	NOT NULL,
-	name	    VARCHAR(255)	NOT NULL,
-	nickname	VARCHAR(255)	NULL,
-	profession	VARCHAR(255)	NULL,
-	gender	    INTEGER     	NULL,
-	content	    VARCHAR(255)	NULL,
-	birthday	VARCHAR(255)	NULL,
-	image_url   VARCHAR(255)	NULL,
-	is_auth	    INTEGER     	NULL,
-	created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-	updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	is_deleted	INTEGER 	NOT NULL	DEFAULT 0,
-	UNIQUE(account)
-);
-
-CREATE TABLE user_session (
-    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    user_id     INTEGER     NOT NULL,
-    name        VARCHAR(255),
-    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE tag (
-    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    post_id     INTEGER     NOT NULL,
-    content     VARCHAR(255),
-    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
-);
-
-CREATE TABLE tag_post (
-    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    tag_id      INTEGER     NOT NULL,
-    post_id     INTEGER     NOT NULL,
-    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
-);
-
-CREATE TABLE reply (
-    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    comment_id  INTEGER     NOT NULL,
-    user_id     INTEGER     NOT NULL,
-    content     VARCHAR(500)     NOT NULL,
-    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
-);
-
-CREATE TABLE reply_like (
-    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    reply_id    INTEGER     NOT NULL,
-    user_id     INTEGER     NOT NULL,
-    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
-);
-
+DROP TABLE IF EXISTS aasd;
+--DROP TABLE IF EXISTS user;
+--DROP TABLE IF EXISTS user_session;
+--DROP TABLE IF EXISTS tag;
+--DROP TABLE IF EXISTS tag_post;
+--DROP TABLE IF EXISTS reply;
+--DROP TABLE IF EXISTS reply_like;
+--DROP TABLE IF EXISTS follow;
+--DROP TABLE IF EXISTS post;
+--DROP TABLE IF EXISTS post_like;
+--DROP TABLE IF EXISTS post_image;
+--DROP TABLE IF EXISTS post_share;
+--DROP TABLE IF EXISTS post_like;
+--DROP TABLE IF EXISTS comment;
+--DROP TABLE IF EXISTS comment_like;
+--DROP TABLE IF EXISTS reply;
+--DROP TABLE IF EXISTS reply_like;
+--
+--CREATE TABLE user (
+--	id	        INTEGER         PRIMARY KEY AUTO_INCREMENT	NOT NULL,
+--	account	    VARCHAR(255)	NOT NULL,
+--	password	VARCHAR(255)	NOT NULL,
+--	name	    VARCHAR(255)	NOT NULL,
+--	nickname	VARCHAR(255)	NULL,
+--	profession	VARCHAR(255)	NULL,
+--	gender	    INTEGER     	NULL,
+--	content	    VARCHAR(255)	NULL,
+--	birthday	VARCHAR(255)	NULL,
+--	image_url   VARCHAR(255)	NULL,
+--	is_auth	    INTEGER     	NULL,
+--	created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--	updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--	is_deleted	INTEGER 	NOT NULL	DEFAULT 0,
+--	UNIQUE(account)
+--);
+--
+--CREATE TABLE user_session (
+--    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    user_id     INTEGER     NOT NULL,
+--    name        VARCHAR(255),
+--    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+--);
+--
+--CREATE TABLE tag (
+--    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    post_id     INTEGER     NOT NULL,
+--    content     VARCHAR(255),
+--    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE tag_post (
+--    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    tag_id      INTEGER     NOT NULL,
+--    post_id     INTEGER     NOT NULL,
+--    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE reply (
+--    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    comment_id  INTEGER     NOT NULL,
+--    user_id     INTEGER     NOT NULL,
+--    content     VARCHAR(500)     NOT NULL,
+--    created_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE reply_like (
+--    id          INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    reply_id    INTEGER     NOT NULL,
+--    user_id     INTEGER     NOT NULL,
+--    is_deleted	INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE follow (
+--    id                  INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    user_id             INTEGER     NOT NULL,
+--    followed_user_id    INTEGER NOT NULL,
+--    created_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    is_deleted	        INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE post (
+--    id                  INTEGER         PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    user_id             INTEGER         NOT NULL,
+--    content             VARCHAR(500)    NOT NULL,
+--    created_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--    is_deleted	        INTEGER 	    NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE post_like (
+--    id                  INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    user_id             INTEGER     NOT NULL,
+--    post_id             INTEGER     NOT NULL,
+--    is_deleted	        INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE post_image (
+--    id                  INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    post_id             INTEGER     NOT NULL,
+--    post_image_url      VARCHAR(150)     NOT NULL,
+--    uploaded_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--    is_deleted	        INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE comment (
+--    id                  INTEGER         PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    post_id             INTEGER         NOT NULL,
+--    user_id             INTEGER         NOT NULL,
+--    content             VARCHAR(500)    NOT NULL,
+--    wrote_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+--    updated_at	        TIMESTAMP	NOT NULL	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--    is_deleted	        INTEGER 	    NOT NULL	DEFAULT 0
+--);
+--
+--CREATE TABLE comment_like (
+--    id                  INTEGER     PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--    user_id             INTEGER     NOT NULL,
+--    comment_id          INTEGER     NOT NULL,
+--    is_deleted	        INTEGER 	NOT NULL	DEFAULT 0
+--);
+--
+--

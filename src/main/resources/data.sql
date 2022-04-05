@@ -1,11 +1,102 @@
-INSERT INTO user(account, password, name)
-VALUES ("d", "d", "jaejin");
-INSERT INTO user(account, password, name)
-VALUES ("xx", "xx", "baejiho");
-
-INSERT INTO user_session(user_id, name)
-VALUES (2, "baejiho");
-
-INSERT INTO user_session(user_id, name)
-VALUES (1, "jaejin");
-
+INSERT INTO user(account, password, name, image_url) VALUES ("jaejindd", "a", "jaejin", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho1", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho2", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho3", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho4", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho5", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho6", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho7", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho8", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho9", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho10", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho11", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--INSERT INTO user(account, password, name, image_url) VALUES ("jiho12", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+--
+--INSERT INTO user_session(user_id, name) VALUES (1, "jaejin");
+--INSERT INTO user_session(user_id, name) VALUES (2, "jiho1");
+--
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (3, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (4, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (5, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (6, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (7, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (8, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (9, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (5, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (6, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (7, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (8, 2);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (9, 2);
+--
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (2, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (4, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (5, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (6, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (2, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (4, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (5, 3);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (6, 3);
+--
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 4);
+--
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 5);
+--
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--INSERT INTO follow(user_id, followed_user_id) VALUES (1, 6);
+--
+--INSERT INTO post(user_id, content) VALUES (1, "배지호1");
+--INSERT INTO post(user_id, content) VALUES (1, "배지호2");
+--INSERT INTO post(user_id, content) VALUES (1, "배지호3");
+--INSERT INTO post(user_id, content) VALUES (1, "배지호4");
+--INSERT INTO post(user_id, content) VALUES (1, "배지호5");
+--
+--INSERT INTO post_like(user_id, post_id) VALUES (1, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (2, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (3, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (4, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (5, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (6, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (7, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (8, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (9, 1);
+--INSERT INTO post_like(user_id, post_id) VALUES (10, 1);
+--
+--INSERT INTO post_like(user_id, post_id) VALUES (1, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (2, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (3, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (4, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (5, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (6, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (7, 2);
+--INSERT INTO post_like(user_id, post_id) VALUES (8, 2);
+--
+--INSERT INTO post_like(user_id, post_id) VALUES (1, 3);
+--INSERT INTO post_like(user_id, post_id) VALUES (2, 3);
+--INSERT INTO post_like(user_id, post_id) VALUES (3, 3);
+--INSERT INTO post_like(user_id, post_id) VALUES (4, 3);
+--INSERT INTO post_like(user_id, post_id) VALUES (5, 3);
+--INSERT INTO post_like(user_id, post_id) VALUES (6, 3);
