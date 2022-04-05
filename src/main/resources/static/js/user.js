@@ -59,6 +59,7 @@ $(function(){
         var account = $("#signup-account").val();
         var password = $("#signup-password").val();
         var name = $("#signup-name").val();
+        var nickname = $("#signup-nickname").val();
 
         $.ajax({
             method: "POST",
@@ -66,7 +67,8 @@ $(function(){
             data: JSON.stringify({
                 "account": account,
                 "password": password,
-                "name": name
+                "name": name,
+                "nickname": nickname
             }),
             contentType: "application/json"
         })

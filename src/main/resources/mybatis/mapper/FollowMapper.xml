@@ -13,4 +13,10 @@
         DELETE FROM FOLLOW
         WHERE user_id = #{userId}
     </delete>
+
+    <select id="isValidateUserFollow" resultType="java.lang.Integer">
+        SELECT user_id
+        FROM follow
+        WHERE user_id = #{userId} AND followed_user_id = #{followedUserId} AND is_deleted=0;
+    </select>
 </mapper>

@@ -116,12 +116,20 @@ public class UserService {
         return userMapper.getUserById(logInUserId);
     }
 
-    public List<User> getSevenRecommendationAboutUser(){
-        return userMapper.getSevenRecommendationAboutUser();
+    public List<User> getSevenRecommendationAboutUser(Integer userId){
+        return userMapper.getSevenRecommendationAboutUser(userId);
     }
 
     public List<User> getUserByKeyword(String keyword){
         return userMapper.getUserByKeyword(keyword);
+    }
+
+    public List<User> getNinePopularUser(Integer userId){
+        return userMapper.getNinePopularUser(userId);
+    }
+
+    public User getUserInfo(Integer userId) {
+        return userMapper.getUserById(userId);
     }
 
     public List<User> getTrendingUserList() {

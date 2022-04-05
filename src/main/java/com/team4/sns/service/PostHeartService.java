@@ -8,4 +8,6 @@ public interface PostHeartService {
 
     void deleteHeart(PostHeartVO postHeartVO);
 
+    Boolean isValidateHeart(PostHeartVO postHeartVO);
+
 }

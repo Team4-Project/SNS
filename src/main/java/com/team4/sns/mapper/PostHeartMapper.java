@@ -10,4 +10,5 @@ public interface PostHeartMapper {
 
     void updateHeartCancel(PostHeartVO postHeartVO);
 
+    Integer isValidateHeart(PostHeartVO postHeartVO);
 }

@@ -4,21 +4,45 @@
 
 <mapper namespace="com.team4.sns.mapper.UserMapper">
 
+    <resultMap id="userProfileInfoMap" type="com.team4.sns.vo.User">
+        <id column="id" property="id"/>
+        <result column="account" property="account"/>
+        <result column="name" property="name"/>
+        <result column="nickname" property="nickname"/>
+        <result column="content" property="content"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="created_at" property="createdAt"/>
+        <collection property="followNum" column="id" select="countFollowNumByUserId"/>
+        <collection property="followingNum" column="id" select="countFollowingNumByUserId"/>
+    </resultMap>
+
     <select id="getUserByAccount" resultType="com.team4.sns.vo.User">
         SELECT *
         FROM user
         WHERE account = #{account} AND is_deleted = 0
     </select>
 
-    <select id="getUserById" resultType="com.team4.sns.vo.User">
-        SELECT *
+    <select id="countFollowNumByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from follow
+        where followed_user_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="countFollowingNumByUserId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM follow
+        WHERE user_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="getUserById" resultMap="userProfileInfoMap">
+        SELECT id, account, name, nickname, content,image_url, created_at
         FROM user
         WHERE id = #{id}
     </select>
 
     <insert id="createUser">
-        INSERT INTO user (account, password, name)
-        VALUES (#{user.account}, #{user.password}, #{user.name})
+        INSERT INTO user (account, password, name, nickname)
+        VALUES (#{user.account}, #{user.password}, #{user.name}, #{user.nickname})
     </insert>
 
     <select id="getUserByAccountAndPassword" resultType="com.team4.sns.vo.User">
@@ -33,7 +57,9 @@
             profession = #{user.profession},
             gender = #{user.gender},
             content = #{user.content},
-            image_url = #{user.imageUrl},
+            <if test="user.imageUrl != null">
+                image_url = #{user.imageUrl},
+            </if>
             is_auth = #{user.isAuth}
         WHERE id = #{user.id} AND is_deleted = 0;
     </update>
@@ -51,15 +77,63 @@
     </select>
 
     <select id="getSevenRecommendationAboutUser" resultType="com.team4.sns.vo.User">
-        SELECT id, name, profession, image_url as imageUrl
-        FROM user
-        LIMIT 7;
+        <choose>
+            <when test="userId == null">
+                SELECT id, name, profession, image_url as imageUrl
+                FROM user
+                ORDER BY rand()
+                LIMIT 7;
+            </when>
+            <otherwise>
+                SELECT id, name, profession, image_url as imageUrl
+                FROM user
+                WHERE id not in (
+                    SELECT followed_user_id
+                    FROM follow
+                    WHERE user_id = #{userId}
+                    )
+                AND id != #{userId}
+                ORDER BY rand()
+                LIMIT 7;
+            </otherwise>
+        </choose>
+
     </select>
 
     <select id="getUserByKeyword" resultType="com.team4.sns.vo.User">
         SELECT id, name, profession, image_url as imageUrl
         FROM user
         WHERE name like concat('%', #{keyword}, '%');
+    </select>
+
+    <select id="getNinePopularUser" resultType="com.team4.sns.vo.User">
+        <choose>
+            <when test="userId != null">
+                SELECT id, name, nickname, profession, image_url as imageUrl
+                FROM user
+                WHERE id not in (
+                SELECT followed_user_id
+                FROM follow
+                WHERE user_id=#{userId}
+                group by followed_user_id
+                )
+                AND id != #{userId}
+                ORDER BY rand()
+                LIMIT 9;
+            </when>
+            <otherwise>
+                SELECT id, name, nickname, profession, image_url as imageUrl
+                FROM user
+                WHERE id in (
+                SELECT followed_user_id
+                FROM follow
+                group by followed_user_id
+                )
+                ORDER BY rand()
+                LIMIT 9;
+            </otherwise>
+        </choose>
+
     </select>
 
 </mapper>

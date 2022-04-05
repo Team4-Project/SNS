@@ -21,4 +21,11 @@ public class PostHeartServiceImpl implements PostHeartService {
         postHeartMapper.updateHeartCancel(postHeartVO);
     }
 
+    @Override
+    public Boolean isValidateHeart(PostHeartVO postHeartVO) {
+        if (postHeartMapper.isValidateHeart(postHeartVO) != null) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface FollowUserMapper {
 
-	public void followUser(FollowUser followUser);
+	void followUser(FollowUser followUser);
 
-	public void unfollowUser(FollowUser followUser);
+	void unfollowUser(FollowUser followUser);
+
+	Integer isValidateUserFollow(FollowUser followUser);
 }

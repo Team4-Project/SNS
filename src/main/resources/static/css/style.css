@@ -318,7 +318,7 @@ body {
 }
 .image-slider img {
     width: 489px;
-    height: 600px;
+    /*height: 600px;*/
     object-fit: cover;
 }
 .slick-prev:before, .slick-next:before {

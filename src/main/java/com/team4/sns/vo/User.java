@@ -24,6 +24,10 @@ public class User {
     Date createdAt;
     Date updatedAt;
     Integer isDeleted;
+
+    Integer followNum;
+    Integer followingNum;
+
     public User(Integer id, String account, String password, String name) {
         this.id = id;
         this.account = account;
