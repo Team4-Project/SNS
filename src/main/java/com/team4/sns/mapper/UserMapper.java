@@ -18,4 +18,5 @@ public interface UserMapper {
     List<User> getSevenRecommendationAboutUser(Integer userId);
     List<User> getUserByKeyword(@Param("keyword") String keyword);
     List<User> getNinePopularUser(Integer userId);
+    List<User> getTrendingUserList();
 }

@@ -87,10 +87,10 @@ public class UserController {
     }
 
     // ONLY FOR TESTING - 아래는 무시해주세요!
-    @GetMapping("/user-test")
-    public ResponseEntity<String> getUser(@RequestBody User user) {
-        userService.getUser(user);
-        return ResponseEntity.status(HttpStatus.OK).body("getUser");
-    }
+//    @GetMapping("/user-test")
+//    public ResponseEntity<String> getUser(@RequestBody User user) {
+//        userService.getUser(user);
+//        return ResponseEntity.status(HttpStatus.OK).body("getUser");
+//    }
 
 }
