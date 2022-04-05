@@ -52,17 +52,17 @@
                                   <form class="form-floating-space" id="profile-change-form" data-sb-form-api-token="API_TOKEN" onsubmit="return false" method="post" enctype="multipart/form-data">
                                      <!-- Email input-->
                                      <div class="form-floating mb-3">
-                                        <input class="form-control rounded-5" id="profile-account" type="text" placeholder="Enter account" readonly=true />
+                                        <input class="form-control rounded-5" id="profile-account" type="text" value="{{#account}}{{account}}{{/account}} {{^account}}{{/account}}" disabled />
                                         <label for="profile-account">Account</label>
                                      </div>
                                     <!-- Password input-->
-                                      <div class="form-floating mb-3">
-                                        <input class="form-control rounded-5" id="profile-password" type="password" placeholder="Enter password" readonly=true />
-                                        <label for="profile-password">Password</label>
-                                      </div>
+<!--                                      <div class="form-floating mb-3">-->
+<!--                                        <input class="form-control rounded-5" id="profile-password" type="password" placeholder="Enter password" readonly=true />-->
+<!--                                        <label for="profile-password">Password</label>-->
+<!--                                      </div>-->
                                      <!-- Name input-->
                                      <div class="form-floating mb-3">
-                                        <input class="form-control rounded-5" id="profile-name" type="text" placeholder="Enter name" readonly=true />
+                                        <input class="form-control rounded-5" id="profile-name" type="text" value="{{#name}}{{name}}{{/name}} {{^name}}{{/name}}" disabled />
                                         <label for="profile-name">Name</label>
                                      </div>
                                      <!-- Nick Name-->

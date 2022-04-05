@@ -15,6 +15,8 @@ public interface UserMapper {
     Integer editUser(@Param("user") User user);
     Integer deleteUser(@Param("id") Integer id);
     Integer getUser(User user);
-    List<User> getSevenRecommendationAboutUser();
+    List<User> getSevenRecommendationAboutUser(Integer userId);
     List<User> getUserByKeyword(@Param("keyword") String keyword);
+    List<User> getNinePopularUser(Integer userId);
+    List<User> getTrendingUserList();
 }

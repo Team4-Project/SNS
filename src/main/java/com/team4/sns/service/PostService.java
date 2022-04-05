@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.util.List;
 
 public interface PostService {
-    List<Post> getPostList();
-    void writePost(Post post, List<MultipartFile> images) throws IOException;
+    List<Post> getPostList(Integer userId, Integer page, Integer size);
+    Long writePost(Post post, List<MultipartFile> images) throws IOException;
     void deletePost(Long postId);
     void modifyPost(Long postId, Post post, List<MultipartFile> images) throws IOException;
     List<Post> getPostByKeyword(String keyword);
+    List<Post> getMyPost(Integer userId, Integer page, Integer size);
 }

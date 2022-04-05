@@ -24,6 +24,10 @@ public class User {
     Date createdAt;
     Date updatedAt;
     Integer isDeleted;
+
+    Integer followNum;
+    Integer followingNum;
+
     public User(Integer id, String account, String password, String name) {
         this.id = id;
         this.account = account;
@@ -38,6 +42,15 @@ public class User {
     public User(String account, String name) {
         this.account = account;
         this.name = name;
+    }
+    public User(Integer id, String account, String name, String nickname, String profession, String imageUrl, Integer isAuth) {
+        this.id = id;
+        this.account = account;
+        this.name = name;
+        this.nickname = nickname;
+        this.profession = profession;
+        this.imageUrl = imageUrl;
+        this.isAuth = isAuth;
     }
     public User(String nickname, String profession, Integer gender, String content, String image, Integer isAuth) {
         this.nickname = nickname;

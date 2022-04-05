@@ -104,15 +104,35 @@ public class UserService {
         }
         return 1;
     }
-    public void getUser(User user) {
-        Integer id = userMapper.getUser(user);
+    public User getUserBySessionId(Integer sessionId) {
+        // VALIDATE 로그인 유저 세션
+        UserSession userSession = userSessionService.getUserSessionById(sessionId);
+        if (userSession == null) {
+            return null;
+        }
+
+        // sessionId를 통해 현재 로그인한 사람의 id를 구함
+        Integer logInUserId = userSession.getUserId();
+        return userMapper.getUserById(logInUserId);
     }
 
-    public List<User> getSevenRecommendationAboutUser(){
-        return userMapper.getSevenRecommendationAboutUser();
+    public List<User> getSevenRecommendationAboutUser(Integer userId){
+        return userMapper.getSevenRecommendationAboutUser(userId);
     }
 
     public List<User> getUserByKeyword(String keyword){
         return userMapper.getUserByKeyword(keyword);
+    }
+
+    public List<User> getNinePopularUser(Integer userId){
+        return userMapper.getNinePopularUser(userId);
+    }
+
+    public User getUserInfo(Integer userId) {
+        return userMapper.getUserById(userId);
+    }
+
+    public List<User> getTrendingUserList() {
+        return userMapper.getTrendingUserList();
     }
 }
