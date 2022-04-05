@@ -16,4 +16,5 @@ public interface PostMapper {
                     @Param("post") Post post);
     List<Post> getPostByKeyword(@Param("keyword") String keyword);
     List<Post> getMyPost(@Param("userId") Integer userId, @Param("limit") Integer limit, @Param("offset") Integer offset);
+    List<Post> getMyLikePostList(@Param("userId") Integer userId, @Param("limit") Integer limit, @Param("offset") Integer offset);
 }

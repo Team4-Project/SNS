@@ -67,4 +67,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getMyPost(Integer userId, Integer page, Integer size) {
         return postMapper.getMyPost(userId, size, (page-1)*size);
     }
+
+    @Override
+    public List<Post> getMyLikePostList(Integer userId, Integer page, Integer size) {
+        return postMapper.getMyLikePostList(userId, size, (page-1)*size);
+    }
 }

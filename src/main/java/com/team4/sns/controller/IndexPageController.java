@@ -53,8 +53,10 @@ public class IndexPageController {
                                  Model model){
         User user = userService.getUserInfo(userId);
         List<Post> myPostList = postService.getMyPost(userId, 1 ,13);
+        List<Post> myLikePostList = postService.getMyLikePostList(userId, 1, 13);
         model.addAttribute("user", user);
         model.addAttribute("myPostList", myPostList);
+        model.addAttribute("myLikePostList", myLikePostList);
         return "profile";
     }
 }
