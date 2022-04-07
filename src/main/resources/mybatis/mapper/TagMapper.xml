@@ -52,5 +52,11 @@
         WHERE id = #{tag.id} AND post_id = #{tag.postId} AND is_deleted = 0;
     </update>
 
+    <select id="getTagByKeyword" resultType="com.team4.sns.vo.Tag">
+        SELECT content
+        FROM tag
+        WHERE content like concat('%', #{keyword}, '%')
+    </select>
+
 </mapper>
 

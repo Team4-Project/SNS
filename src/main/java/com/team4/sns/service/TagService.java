@@ -49,4 +49,8 @@ public class TagService {
         return tagMapper.getTagListSearch(content, size, (page-1) * size);
     }
 
+    public List<Tag> getTagByKeyword(String keyword) {
+        return tagMapper.getTagByKeyword(keyword);
+    }
+
 }

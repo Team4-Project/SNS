@@ -14,4 +14,5 @@ public interface TagMapper {
     Integer editTag(@Param("tag") Tag tag);
     Integer deleteTag(@Param("tag") Tag tag);
     List<Tag> getTagListSearch(@Param("content") String content, @Param("limit") Integer limit, @Param("offset") Integer offset);
+    List<Tag> getTagByKeyword(@Param("keyword") String keyword);
 }
