@@ -87,7 +87,7 @@
         JOIN (
             SELECT followed_user_id as user_id, count(*) AS num
             FROM follow
-            WHERE created_at BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND NOW() AND is_deleted = 0
+            WHERE created_at BETWEEN DATE_ADD(NOW(), INTERVAL -300 DAY) AND NOW() AND is_deleted = 0
             GROUP BY followed_user_id
             ORDER BY num DESC
             LIMIT 5
@@ -120,7 +120,7 @@
     <select id="getTrendingTagList" resultType="com.team4.sns.vo.Tag">
         SELECT content, COUNT(*) AS num
         FROM tag
-        WHERE is_deleted = 0 AND updated_at BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND NOW()
+        WHERE is_deleted = 0 AND updated_at BETWEEN DATE_ADD(NOW(), INTERVAL -300 DAY) AND NOW()
         GROUP BY content
         ORDER BY num DESC
         LIMIT 5

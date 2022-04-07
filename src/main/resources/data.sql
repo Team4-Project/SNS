@@ -1,4 +1,4 @@
-INSERT INTO user(account, password, name, image_url) VALUES ("jaejindd", "a", "jaejin", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
+INSERT INTO user(account, password, name, nickname, profession, gender, content, is_auth, image_url) VALUES ("jaejindd", "a", "jaejin", "mynickname", "student", 1, "hi, myname is jaejin", 1, "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
 --INSERT INTO user(account, password, name, image_url) VALUES ("jiho1", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
 --INSERT INTO user(account, password, name, image_url) VALUES ("jiho2", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
 --INSERT INTO user(account, password, name, image_url) VALUES ("jiho3", "a", "jiho", "https://codepresso-team4.s3.ap-northeast-2.amazonaws.com/1648903660441_pubg.jpeg");
