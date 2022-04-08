@@ -79,6 +79,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getMySharePostList(Integer userId, Integer page, Integer size) {
+        return postMapper.getMySharePostList(userId, size, (page-1)*size);
+    }
+
+    @Override
     public void sharePost(Integer userId, Long postId){
         postMapper.sharePost(userId, postId);
     }
