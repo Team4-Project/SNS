@@ -77,4 +77,19 @@ public class PostServiceImpl implements PostService {
     public List<Post> getMyCommentPostList(Integer userId, Integer page, Integer size) {
         return postMapper.getMyCommentPostList(userId, size, (page-1)*size);
     }
+
+    @Override
+    public void sharePost(Integer userId, Long postId){
+        postMapper.sharePost(userId, postId);
+    }
+
+    @Override
+    public Boolean isSharedPost(Integer userId, Long postId) {
+        return postMapper.isSharedPost(userId, postId);
+    }
+
+    @Override
+    public void deleteSharePost(Integer userId, Long postId) {
+        postMapper.deleteSharePost(userId, postId);
+    }
 }

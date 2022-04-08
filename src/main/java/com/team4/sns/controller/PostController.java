@@ -63,4 +63,20 @@ public class PostController {
                            @Validated PostRequestDto postRequestDto) throws IOException {
         postService.modifyPost(postId, postRequestDto.toPost(), images);
     }
+
+    @PostMapping(value ="/post/share/{post-id}")
+    public void sharePost(@CookieValue(name = "id") Integer sessionId, @PathVariable(name = "post-id") Long postId){
+        UserSession userSession = userSessionService.getUserSessionById(sessionId);
+
+        Integer userId = userSession.getUserId();
+
+        if(postService.isSharedPost(userId, postId)){
+            postService.deleteSharePost(userId, postId);
+        }
+        else{
+            postService.sharePost(userId, postId);
+        }
+
+    }
+
 }

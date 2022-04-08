@@ -168,5 +168,28 @@
             LIMIT #{limit} OFFSET #{offset}
     </select>
 
+    <insert id="sharePost">
+        INSERT INTO post_share(user_id, post_id)
+        VALUES (#{userId}, #{postId})
+    </insert>
+
+    <select id="isSharedPost" resultType="java.lang.Boolean">
+        SELECT EXISTS
+        ( SELECT id
+          FROM post_share
+          WHERE user_id=#{userId}
+            AND post_id=#{postId}
+            AND is_deleted=0
+        )
+    </select>
+
+    <update id="deleteSharePost">
+        UPDATE post_share
+        SET is_deleted=1
+        WHERE user_id=#{userId}
+            AND post_id=#{postId}
+            AND is_deleted=0
+    </update>
+
 </mapper>
 

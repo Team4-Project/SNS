@@ -18,4 +18,8 @@ public interface PostMapper {
     List<Post> getMyPost(@Param("userId") Integer userId, @Param("limit") Integer limit, @Param("offset") Integer offset);
     List<Post> getMyLikePostList(@Param("userId") Integer userId, @Param("limit") Integer limit, @Param("offset") Integer offset);
     List<Post> getMyCommentPostList(@Param("userId") Integer userId, @Param("limit") Integer limit, @Param("offset") Integer offset);
+
+    void sharePost(Integer userId, Long postId);
+    Boolean isSharedPost(Integer userId, Long postId);
+    void deleteSharePost(Integer userId, Long postId);
 }
