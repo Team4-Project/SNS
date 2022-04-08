@@ -112,7 +112,7 @@
             WHERE is_deleted = 0
             GROUP BY post_id
         ) AS pl ON p.id = pl.post_id
-        WHERE u.is_deleted = 0 AND p.is_deleted=0 AND p.updated_at BETWEEN DATE_ADD(NOW(), INTERVAL -3 DAY) AND NOW()
+        WHERE u.is_deleted = 0 AND p.is_deleted=0 AND p.updated_at BETWEEN DATE_ADD(NOW(), INTERVAL -300 DAY) AND NOW()
         ORDER BY pl.num DESC
         LIMIT 5
     </select>
