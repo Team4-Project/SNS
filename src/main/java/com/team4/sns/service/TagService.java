@@ -15,8 +15,7 @@ public class TagService {
         this.tagPostService = tagPostService;
     }
 
-    // PostPageController 에서 post를 구성하는 post, tag, comment 를 각각 불러올 때
-    // postId를 기반으로 tagList를 불러와야할 때 필요
+    // postId에 해당하는 tag를 모두 불러옴
     public List<Tag> getTagListByPostId(Integer postId) {
         return tagMapper.getTagListByPostId(postId);
     }
@@ -26,10 +25,10 @@ public class TagService {
     public void createTag(Integer postId, String contentList) {
         // contentList 에는 input 으로 들어온 모든 tag의 contents가 '#'을 기준으로 합쳐져있음
         String[] content = contentList.split("#");
-        for (int i = 0; i < content.length; i++) {
+        for (int i = 1; i < content.length; i++) {
             Tag tag = new Tag(postId, content[i]);
-            Integer tagId = tagMapper.createTag(tag);
-            tagPostService.createTagPost(postId, tagId);
+            tagMapper.createTag(tag);
+            tagPostService.createTagPost(postId, tag.getId());
         }
     }
     public void editTag(Tag tag) {

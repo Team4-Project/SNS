@@ -7,7 +7,7 @@
     <select id="getTagListByPostId" resultType="com.team4.sns.vo.Tag">
         SELECT *
         FROM tag
-        WHERE post_id = #{postId}
+        WHERE post_id = #{postId} AND is_deleted = 0
     </select>
 
     <select id="getTagListSearch" resultType="com.team4.sns.vo.Tag">
