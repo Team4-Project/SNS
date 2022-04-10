@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS aasd;
+DELETE FROM user WHERE account = "jaejindd";
 --DROP TABLE IF EXISTS user;
 --DROP TABLE IF EXISTS user_session;
 --DROP TABLE IF EXISTS tag;

@@ -4,11 +4,13 @@ $(function(){
     var session_id = $.cookie('id');
     if(session_id) {
         $("#logout-menu").show();
+        $("#profile-menu").show();
         $("#change-profile-menu").show();
         $("#login-menu").hide();
         $("#signup-menu").hide();
     } else {
         $("#logout-menu").hide();
+        $("#profile-menu").hide();
         $("#change-profile-menu").hide();
         $("#login-menu").show();
         $("#signup-menu").show();
@@ -26,8 +28,9 @@ $(function(){
             }
         })
         .done(function(response) {
+            console.log('asd');
             document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.href = "/trending";
+            window.location.href = "/";
         });
     });
 
@@ -46,7 +49,7 @@ $(function(){
         })
         .done(function(response) {
             console.log("로그인 성공");
-            window.location.href="/trending";
+            window.location.href="/";
         })
         .fail(function(response) {
             console.log(response);
@@ -74,7 +77,7 @@ $(function(){
         })
         .done(function(response) {
             alert("계정 생성 성공");
-            window.location.href="/trending";
+            window.location.href="/";
         })
         .fail(function(response) {
             console.log(response);
