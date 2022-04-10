@@ -67,4 +67,34 @@ public class PostServiceImpl implements PostService {
     public List<Post> getMyPost(Integer userId, Integer page, Integer size) {
         return postMapper.getMyPost(userId, size, (page-1)*size);
     }
+
+    @Override
+    public List<Post> getMyLikePostList(Integer userId, Integer page, Integer size) {
+        return postMapper.getMyLikePostList(userId, size, (page-1)*size);
+    }
+
+    @Override
+    public List<Post> getMyCommentPostList(Integer userId, Integer page, Integer size) {
+        return postMapper.getMyCommentPostList(userId, size, (page-1)*size);
+    }
+
+    @Override
+    public List<Post> getMySharePostList(Integer userId, Integer page, Integer size) {
+        return postMapper.getMySharePostList(userId, size, (page-1)*size);
+    }
+
+    @Override
+    public void sharePost(Integer userId, Long postId){
+        postMapper.sharePost(userId, postId);
+    }
+
+    @Override
+    public Boolean isSharedPost(Integer userId, Long postId) {
+        return postMapper.isSharedPost(userId, postId);
+    }
+
+    @Override
+    public void deleteSharePost(Integer userId, Long postId) {
+        postMapper.deleteSharePost(userId, postId);
+    }
 }

@@ -13,4 +13,10 @@ public interface PostService {
     void modifyPost(Long postId, Post post, List<MultipartFile> images) throws IOException;
     List<Post> getPostByKeyword(String keyword);
     List<Post> getMyPost(Integer userId, Integer page, Integer size);
+    List<Post> getMyLikePostList(Integer userId, Integer page, Integer size);
+    List<Post> getMyCommentPostList(Integer userId, Integer page, Integer size);
+    List<Post> getMySharePostList(Integer userId, Integer page, Integer size);
+    void sharePost(Integer userId, Long postId);
+    Boolean isSharedPost(Integer userId, Long postId);
+    void deleteSharePost(Integer userId, Long postId);
 }
