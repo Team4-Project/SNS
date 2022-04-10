@@ -20,6 +20,7 @@ public class Post {
     private Integer likeNum;
     private Integer commentNum;
     private Integer shareNum;
+    private List<String> tagList;
 
     @Builder
     public Post(Long userId, String content){
