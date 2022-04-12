@@ -130,4 +130,17 @@ $(function(){
             }
         });
     });
+
+    $(document).on("click", "#profile-menu", function (){
+        $.ajax({
+            method: "GET",
+            url: "/user/session",
+            data: {"sessionId": session_id},
+        })
+            .done(function(response){
+                var userId = response.userId;
+
+                window.location.href="/profile/" + userId;
+            })
+    })
 });

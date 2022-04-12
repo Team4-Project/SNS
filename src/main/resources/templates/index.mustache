@@ -116,6 +116,12 @@
                                                     </div>
                                                     <div class="my-2">
                                                         <p class="text-dark">{{content}}</p>
+                                                        {{#tagList}}
+                                                            {{^.}}
+                                                                <span class="text-primary" style="margin-right: 30px">  </span>
+                                                            {{/.}}
+                                                            <span class="text-primary" style="margin-right: 30px">#{{.}}</span>
+                                                        {{/tagList}}
                                                         <div id="postImages" href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#imageModal">
                                                             {{#postImageList}}
                                                                 <img id="image" src="{{.}}" class="img-fluid rounded mb-3" alt="post-img">
@@ -577,6 +583,16 @@
         result += "</div>";
         return result
     }
+
+    function insertTag(tagList){
+
+        let tagResult = ""
+        for(var i=0; i<tageList.length; i++){
+            var tmp = "<span class=\"text-primary\" style=\"margin-right: 30px\">" + tagList[i] + "</span>"
+            tagResult += tmp
+        }
+        return tagResult
+    }
     let isRequestPost = false;
     window.addEventListener('scroll',() => {
         // $("#mainPost").height() : DOM의 길이
@@ -626,7 +642,7 @@
                         "</div>" +
                         "</div>" +
                         "<div class=\"my-2\">" +
-                        "<p class=\"text-dark\">" + post.content + "</p>" +
+                        "<p class=\"text-dark\">" + post.content + "</p>" + insertTag(post.tagList) +
                          insertImage(post.postImageList) +
                         "<div id=\"postImages\" href=\"#\" class=\"text-decoration-none\" data-bs-toggle=\"modal\" data-bs-target=\"#imageModal\">" +
                         "</div>" +
