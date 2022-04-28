@@ -257,6 +257,12 @@
                                                         </div>
                                                         <div class="my-2">
                                                             <p class="text-dark">{{content}}</p>
+                                                            {{#tagList}}
+                                                                {{^.}}
+                                                                    <span class="text-primary" style="margin-right: 30px">  </span>
+                                                                {{/.}}
+                                                                <span class="text-primary" style="margin-right: 30px">#{{.}}</span>
+                                                            {{/tagList}}
                                                             <div id="postImages" href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#imageModal">
                                                                 {{#postImageList}}
                                                                     <img id="image" src="{{.}}" class="img-fluid rounded mb-3" alt="post-img">
@@ -305,6 +311,7 @@
                                                 <img id="userProfileUrl" src="{{user.imageUrl}}" class="img-fluid rounded-circle user-img" alt="profile-img">
                                                 <div class="d-flex ms-3 align-items-start w-100">
                                                     <div class="w-100">
+                                                        <div>
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <a href="/profile/{{user.id}}" class="text-decoration-none d-flex align-items-center">
                                                                 <h6 id="userName" class="fw-bold mb-0 text-body">{{User.name}}</h6>

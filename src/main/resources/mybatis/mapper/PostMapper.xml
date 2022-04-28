@@ -16,6 +16,7 @@
         <collection property="likeNum" column="id" select="countLikeNumByPostId"/>
         <collection property="commentNum" column="id" select="countCommentNumByPostId"/>
         <collection property="shareNum" column="id" select="countShareNumByPostId"/>
+        <collection property="tagList" column="id" select="selectTagList"/>
     </resultMap>
 
     <select id="getPostList" resultMap="postResultMap">
@@ -86,6 +87,12 @@
         SELECT count(*)
         FROM post_share
         Where post_id=#{id} and is_deleted=0;
+    </select>
+
+    <select id="selectTagList" resultType="java.lang.String">
+        SELECT content
+        FROM tag
+        WHERE post_id=#{id} AND is_deleted=0;
     </select>
 
     <insert id="writePost" parameterType="com.team4.sns.vo.Post">
